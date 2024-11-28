@@ -11,8 +11,11 @@ COPY --from=controller /app .
 EXPOSE 3000 8080 8081
 
 # Add the run script to launch both applications
-COPY run.sh run.sh
-RUN chmod +x run.sh
+COPY run.sh /run.sh
+RUN chmod +x /run.sh
+
+# install tini
+RUN apt-get update && apt-get install -y tini
 
 # Start both applications
-ENTRYPOINT ["/bin/bash", "run.sh"]
+ENTRYPOINT ["/usr/bin/tini", "--", "/run.sh"]
