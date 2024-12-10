@@ -47,7 +47,7 @@ services:
           ipv4_address: 172.20.0.12
       env_file:
         - .env
-      enviroment:
+      environment:
         - MAIN_EXECUTOR = "172.20.0.2"
       volumes:
         - /home/data:/home/data
@@ -59,7 +59,7 @@ services:
           ipv4_address: 172.20.0.13
       env_file:
         - .env
-      enviroment:
+      environment:
         - MAIN_EXECUTOR = "172.20.0.3"
       volumes:
         - /home/data:/home/data
@@ -71,7 +71,7 @@ services:
           ipv4_address: 172.20.0.14
       env_file:
         - .env
-      enviroment:
+      environment:
         - MAIN_EXECUTOR = "172.20.0.4"
       volumes:
         - /home/data:/home/data                  
