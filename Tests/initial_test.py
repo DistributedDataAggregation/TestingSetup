@@ -70,7 +70,7 @@ EXPECTED_RESULT = {
 }
 
 # Test bazowy
-@pytest.mark.integration
+@pytest.mark.system
 def test_query_response():
     response = requests.post(API_URL, json=QUERY_PAYLOAD)
     assert response.status_code == 200, f"Expected HTTP 200, got {response.status_code}"
