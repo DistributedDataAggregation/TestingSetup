@@ -15,7 +15,7 @@ QUERY_PAYLOAD = {
             "function": "Maximum"
         }
     ],
-    "table_name": "yellow"
+    "table_name": "yellow_tripdata_2024-01"
 }
 
 # Oczekiwany wynik testu
