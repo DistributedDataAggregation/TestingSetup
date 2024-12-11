@@ -7,7 +7,7 @@ Install required packages:
 pip install -r requirements.txt
 ```
 
-Add  files to your ***/home/data*** directory.
+Add `testa1`, `testab` and `yellow_tripdata_2024-01.parquet` files to your ***/home/data*** directory.
 
 Have testing setup running.
 
