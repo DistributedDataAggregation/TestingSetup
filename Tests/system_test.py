@@ -69,14 +69,63 @@ EXPECTED_RESULT = {
     }
 }
 
-# Test bazowy
+MULTIPLE_SELECTS_PAYLOAD = {
+    "group_columns": [
+        "RatecodeID"
+    ],
+    "select": [
+        {
+            "column": "payment_type",
+            "function": "Minimum"
+        },
+        {
+            "column": "VendorID",
+            "function": "Maximum"
+        }
+    ],
+    "table_name": "yellow_tripdata_2024-01"
+}
+
+MULTIPLE_SELECTS_EXPECTED_RESULT = {
+    "result": {
+        "values": [
+            {"grouping_value": "2", "results": [{"value": 1}, {"value": 2}]},
+            {"grouping_value": "3", "results": [{"value": 1}, {"value": 2}]},
+            {"grouping_value": "4", "results": [{"value": 1}, {"value": 2}]},
+            {"grouping_value": "5", "results": [{"value": 1}, {"value": 2}]},
+            {"grouping_value": "99", "results": [{"value": 1}, {"value": 2}]},
+            {"grouping_value": "6", "results": [{"value": 2}, {"value": 2}]},
+            {"grouping_value": "1", "results": [{"value": 1}, {"value": 2}]}
+        ]
+    }
+}
+
+
 @pytest.mark.system
-def test_query_response():
+def test_query_response_multiple_group_columns():
     response = requests.post(API_URL, json=QUERY_PAYLOAD)
+    check_response(response, EXPECTED_RESULT)
+
+@pytest.mark.system
+def test_query_response_multiple_selects():
+    response = requests.post(API_URL, json=MULTIPLE_SELECTS_PAYLOAD)
+    check_response(response, MULTIPLE_SELECTS_EXPECTED_RESULT)
+
+
+@pytest.mark.system
+def test_query_response_parallel():
+    response = requests.post(API_URL, json=QUERY_PAYLOAD)
+    response2 = requests.post(API_URL, json=QUERY_PAYLOAD)
+    
+    check_response(response, EXPECTED_RESULT)
+    check_response(response2, EXPECTED_RESULT)
+
+def check_response(response, expected_result):
+    """Wspólna funkcja do sprawdzania odpowiedzi."""
     assert response.status_code == 200, f"Expected HTTP 200, got {response.status_code}"
     response_json = response.json()
 
-    for expected_group in EXPECTED_RESULT["result"]["values"]:
+    for expected_group in expected_result["result"]["values"]:
         grouping_value = expected_group["grouping_value"]
         expected_results = expected_group["results"]
 
