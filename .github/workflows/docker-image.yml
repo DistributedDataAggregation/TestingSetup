@@ -9,26 +9,30 @@ on:
   pull_request:
     branches: [ "master" ]
 
+
 jobs:
   integration-tests:
     runs-on: ubuntu-latest
-
+    
+    permissions:
+      contents: read 
+      
     steps:
     - name: Checkout test repo
       uses: actions/checkout@v4
 
     - name: Clone executor repo
       run: |
-        git clone https://github.com/DistributedDataAggregation/ExecutorApp
+        git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/DistributedDataAggregation/ExecutorApp.git
         cd ExecutorApp
         docker build -t executor-image .
-        
+
     - name: Clone controller repo
       run: |
-        git clone https://github.com/DistributedDataAggregation/ControllerApp
+        git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/DistributedDataAggregation/ControllerApp.git
         cd ControllerApp
         docker build -t controller-image .
-        cd ..
+        
     - name: Run docker compose
       run: |
         docker-compose up -d
