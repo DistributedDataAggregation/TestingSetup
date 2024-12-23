@@ -1,0 +1,45 @@
+name: Run Integration Tests with Docker
+
+on:
+  repository_dispatch:
+    types:
+      - run-integration-tests
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout test repo
+      uses: actions/checkout@v4
+
+    - name: Clone executor repo
+      run: |
+        git clone https://github.com/DistributedDataAggregation/ExecutorApp
+        cd ExecutorApp
+        docker build -t executor-image .
+        
+    - name: Clone controller repo
+      run: |
+        git clone https://github.com/DistributedDataAggregation/ControllerApp
+        cd ControllerApp
+        docker build -t controller-image .
+        cd ..
+
+    - name: Run docker compose
+      run: |
+        docker-compose up -d
+
+    - name: Run Python Integration Tests
+      run: |
+        pip install -r requirements.txt
+        pytest --disable-warnings tests/
+
+    - name: Stop services
+      run: |
+        docker-compose down
+    
