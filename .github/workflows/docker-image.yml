@@ -20,6 +20,12 @@ jobs:
     steps:
     - name: Checkout test repo
       uses: actions/checkout@v4
+      
+    - name: Debug GITHUB_TOKEN access
+      run: |
+        echo "Testing access with GITHUB_TOKEN"
+        git ls-remote https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/DistributedDataAggregation/ExecutorApp.git
+
 
     - name: Clone executor repo
       env:
