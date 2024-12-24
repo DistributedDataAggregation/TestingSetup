@@ -35,12 +35,13 @@ jobs:
         
     - name: Run docker compose
       run: |
-        docker-compose up -d
+        docker compose up -d
+
     - name: Run Python Integration Tests
       run: |
         pip install -r requirements.txt
-        pytest --disable-warnings tests/
+        pytest --disable-warnings Tests/
+
     - name: Stop services
       run: |
-        docker-compose down
-    
+        docker compose down
