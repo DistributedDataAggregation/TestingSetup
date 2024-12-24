@@ -32,6 +32,11 @@ jobs:
         git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/DistributedDataAggregation/ControllerApp.git
         cd ControllerApp
         docker build -t controller-image .
+        cd .. 
+        
+    - name: Build nginx image
+      run: |
+        docker build -t lb-image ./load-balancer/
         
     - name: Run docker compose
       run: |
