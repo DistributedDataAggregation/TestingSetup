@@ -44,8 +44,9 @@ jobs:
 
     - name: Run Python Integration Tests
       run: |
+        cd Tests
         pip install -r requirements.txt
-        pytest --disable-warnings Tests/
+        pytest --disable-warnings .
 
     - name: Stop services
       run: |
