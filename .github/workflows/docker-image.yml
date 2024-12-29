@@ -1,0 +1,53 @@
+name: Run Integration Tests with Docker
+
+on:
+  repository_dispatch:
+    types:
+      - run-integration-tests
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+
+jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      
+    steps:
+    - name: Checkout test repo
+      uses: actions/checkout@v4
+
+    - name: Clone executor repo
+      run: |
+        git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/DistributedDataAggregation/ExecutorApp.git
+        cd ExecutorApp
+        docker build -t executor-image .
+
+    - name: Clone controller repo
+      run: |
+        git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/DistributedDataAggregation/ControllerApp.git
+        cd ControllerApp
+        docker build -t controller-image .
+        cd .. 
+        
+    - name: Build nginx image
+      run: |
+        docker build -t lb-image ./load-balancer/
+        
+    - name: Run docker compose
+      run: |
+        docker compose up -d
+
+    - name: Run Python Integration Tests
+      run: |
+        cd Tests
+        pip install -r requirements.txt
+        pytest --disable-warnings .
+
+    - name: Stop services
+      run: |
+        docker compose down
