@@ -2,7 +2,10 @@ import pytest
 import requests
 
 # Adres endpointu API
-API_URL = "http://localhost:80/api/v1/query" 
+
+# API_URL = "http://localhost:80/api/v1/query" 
+API_LOCAL_URL = "http://localhost:3000/api/v1/query"
+API_URL = "http://localhost:3000/api/v1/query"
 
 @pytest.mark.integration
 def test_response_format():
@@ -33,15 +36,20 @@ def test_response_format():
         for result in value["results"]:
             assert "value" in result, "'value' missing in one of the results."
 
-    # kabatka
-    assert response_json["result"]["values"][0]["results"][0]['value'] == 84 
-    assert response_json["result"]["values"][0]["results"][1]["value"] == -4
 
-    assert response_json["result"]["values"][1]["results"][0]['value'] == 77
-    assert response_json["result"]["values"][1]["results"][1]["value"] == -1
+    for group in response_json["result"]["values"]:
+        grouping_value = group["grouping_value"]
+        results = group["results"]
 
-    assert response_json["result"]["values"][2]["results"][0]['value'] == 86 
-    assert response_json["result"]["values"][2]["results"][1]["value"] == -2
+        if grouping_value == "Kulik":
+            assert results[0]["value"] == 77
+            assert results[1]["value"] == -1
+        elif grouping_value == "Kabatka":
+            assert results[0]["value"] == 84
+            assert results[1]["value"] == -4
+        elif grouping_value == "Krol":
+            assert results[0]["value"] == 86
+            assert results[1]["value"] == -2
 
 @pytest.mark.integration
 def test_response_multiple_selects():
