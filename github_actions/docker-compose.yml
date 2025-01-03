@@ -48,7 +48,7 @@ services:
     env_file:
       - ./.env
     environment:
-      - MAIN_EXECUTOR=172.20.0.2
+        - MAIN_EXECUTOR_IDX=0
     volumes:
       - ./test.parquet:/home/data/test.parquet
 
@@ -60,7 +60,7 @@ services:
     env_file:
       - ./.env
     environment:
-      - MAIN_EXECUTOR=172.20.0.3
+      - MAIN_EXECUTOR_IDX=1
     volumes:
       - ./test.parquet:/home/data/test.parquet
 
@@ -72,7 +72,7 @@ services:
     env_file:
       - ./.env
     environment:
-      - MAIN_EXECUTOR=172.20.0.4
+        - MAIN_EXECUTOR_IDX=2
     volumes:
       - ./test.parquet:/home/data/test.parquet
 
