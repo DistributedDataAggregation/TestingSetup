@@ -22,49 +22,49 @@ QUERY_PAYLOAD = {
 EXPECTED_RESULT = {
     "result": {
         "values": [
-            {"grouping_value": "1|3", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "2|2", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "3|1", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "4|0", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "1|4", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "4|1", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "2|3", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "3|2", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "5|0", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "5|1", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "1|5", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "2|4", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "4|2", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "3|3", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "99|0", "results": [{"value": 3, "count": 0}]},
-            {"grouping_value": "99|1", "results": [{"value": 2, "count": 0}]},
-            {"grouping_value": "5|2", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "1|6", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "4|3", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "3|4", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "2|5", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "6|1", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "5|3", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "4|4", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "2|6", "results": [{"value": 3, "count": 0}]},
-            {"grouping_value": "3|5", "results": [{"value": 3, "count": 0}]},
-            {"grouping_value": "99|2", "results": [{"value": 2, "count": 0}]},
-            {"grouping_value": "5|4", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "4|5", "results": [{"value": 2, "count": 0}]},
-            {"grouping_value": "3|6", "results": [{"value": 3, "count": 0}]},
-            {"grouping_value": "99|3", "results": [{"value": 1, "count": 0}]},
-            {"grouping_value": "5|5", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "4|6", "results": [{"value": 2, "count": 0}]},
-            {"grouping_value": "1|9", "results": [{"value": 1, "count": 0}]},
-            {"grouping_value": "1|0", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "5|6", "results": [{"value": 2, "count": 0}]},
-            {"grouping_value": "1|1", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "2|0", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "5|7", "results": [{"value": 2, "count": 0}]},
-            {"grouping_value": "1|2", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "2|1", "results": [{"value": 4, "count": 0}]},
-            {"grouping_value": "5|8", "results": [{"value": 3, "count": 0}]},
-            {"grouping_value": "3|0", "results": [{"value": 4, "count": 0}]}
+            {"grouping_value": "1|3", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "2|2", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "3|1", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "4|0", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "1|4", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "4|1", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "2|3", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "3|2", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "5|0", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "5|1", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "1|5", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "2|4", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "4|2", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "3|3", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "99|0", "results": [{"value": 3, "count": 0, "is_null": False}]},
+            {"grouping_value": "99|1", "results": [{"value": 2, "count": 0, "is_null": False}]},
+            {"grouping_value": "5|2", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "1|6", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "4|3", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "3|4", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "2|5", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "6|1", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "5|3", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "4|4", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "2|6", "results": [{"value": 3, "count": 0, "is_null": False}]},
+            {"grouping_value": "3|5", "results": [{"value": 3, "count": 0, "is_null": False}]},
+            {"grouping_value": "99|2", "results": [{"value": 2, "count": 0, "is_null": False}]},
+            {"grouping_value": "5|4", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "4|5", "results": [{"value": 2, "count": 0, "is_null": False}]},
+            {"grouping_value": "3|6", "results": [{"value": 3, "count": 0, "is_null": False}]},
+            {"grouping_value": "99|3", "results": [{"value": 1, "count": 0, "is_null": False}]},
+            {"grouping_value": "5|5", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "4|6", "results": [{"value": 2, "count": 0, "is_null": False}]},
+            {"grouping_value": "1|9", "results": [{"value": 1, "count": 0, "is_null": False}]},
+            {"grouping_value": "1|0", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "5|6", "results": [{"value": 2, "count": 0, "is_null": False}]},
+            {"grouping_value": "1|1", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "2|0", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "5|7", "results": [{"value": 2, "count": 0, "is_null": False}]},
+            {"grouping_value": "1|2", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "2|1", "results": [{"value": 4, "count": 0, "is_null": False}]},
+            {"grouping_value": "5|8", "results": [{"value": 3, "count": 0, "is_null": False}]},
+            {"grouping_value": "3|0", "results": [{"value": 4, "count": 0, "is_null": False}]}
         ]
     }
 }
@@ -89,15 +89,216 @@ MULTIPLE_SELECTS_PAYLOAD = {
 MULTIPLE_SELECTS_EXPECTED_RESULT = {
     "result": {
         "values": [
-            {"grouping_value": "2", "results": [{"value": 1, "count": 0},{"value": 2, "count": 0}]},
-            {"grouping_value": "3", "results": [{"value": 1, "count": 0},{"value": 2, "count": 0}]},
-            {"grouping_value": "4", "results": [{"value": 1, "count": 0},{"value": 2, "count": 0}]},
-            {"grouping_value": "5", "results": [{"value": 1, "count": 0},{"value": 2, "count": 0}]},
-            {"grouping_value": "99", "results": [{"value": 1, "count": 0},{"value": 2, "count": 0}]},
-            {"grouping_value": "6", "results": [{"value": 2, "count": 0},{"value": 2, "count": 0}]},
-            {"grouping_value": "1", "results": [{"value": 1, "count": 0},{"value": 2, "count": 0}]}
+            {"grouping_value": "2", "results": [{"value": 1, "count": 0, "is_null": False},{"value": 2, "count": 0, "is_null": False}]},
+            {"grouping_value": "3", "results": [{"value": 1, "count": 0, "is_null": False},{"value": 2, "count": 0, "is_null": False}]},
+            {"grouping_value": "4", "results": [{"value": 1, "count": 0, "is_null": False},{"value": 2, "count": 0, "is_null": False}]},
+            {"grouping_value": "5", "results": [{"value": 1, "count": 0, "is_null": False},{"value": 2, "count": 0, "is_null": False}]},
+            {"grouping_value": "99", "results": [{"value": 1, "count": 0, "is_null": False},{"value": 2, "count": 0, "is_null": False}]},
+            {"grouping_value": "6", "results": [{"value": 2, "count": 0, "is_null": False},{"value": 2, "count": 0, "is_null": False}]},
+            {"grouping_value": "1", "results": [{"value": 1, "count": 0, "is_null": False},{"value": 2, "count": 0, "is_null": False}]}
         ]
     }
+}
+
+NULL_GROUPING_PAYLOAD = {
+    "group_columns": [
+    "Position"
+    ],
+    "select": [
+    {
+      "column": "Salary",
+      "function": "Average"
+    }
+  ],
+  "table_name": "data_null"
+}
+
+# zakładam trzy pliki data_null
+NULL_GROUPING_EXPECTED_RESULT = {
+    "result": {
+        "error": None,
+        "values": [
+            {
+                "grouping_value": "Manager",
+                "results": [
+                    {
+                        "value": 9000,
+                        "count": 3,
+                        "is_null": False
+                    }
+                ]
+            },
+            {
+                "grouping_value": "null",
+                "results": [
+                    {
+                        "value": 90,
+                        "count": 3,
+                        "is_null": False
+                    }
+                ]
+            },
+            {
+                "grouping_value": "Developer",
+                "results": [
+                    {
+                        "value": 3000,
+                        "count": 3,
+                        "is_null": False
+                    }
+                ]
+            },
+            {
+                "grouping_value": "CEO",
+                "results": [
+                    {
+                        "value": 33000,
+                        "count": 6,
+                        "is_null": False
+                    }
+                ]
+            },
+            {
+                "grouping_value": "Designer",
+                "results": [
+                    {
+                        "value": 6666,
+                        "count": 3,
+                        "is_null": False
+                    }
+                ]
+            }
+        ]
+    },
+}
+
+NULL_SELECT_PAYLOAD = {
+    "group_columns": [
+    "Position"
+  ],
+  "select": [
+  {
+      "column": "Age",
+      "function": "Average"
+    },
+   {
+      "column": "Age",
+      "function": "Minimum"
+    },
+   {
+      "column": "Age",
+      "function": "Maximum"
+    }
+  ],
+  "table_name": "data_null"
+}
+
+NULL_SELECT_EXPECTED_RESULT = {
+    "result": {
+        "error": None,
+        "values": [
+            {
+                "grouping_value": "Manager",
+                "results": [
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    },
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    },
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    }
+                ]
+            },
+            {
+                "grouping_value": "null",
+                "results": [
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    },
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    },
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    }
+                ]
+            },
+            {
+                "grouping_value": "Developer",
+                "results": [
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    },
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    },
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    }
+                ]
+            },
+            {
+                "grouping_value": "CEO",
+                "results": [
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    },
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    },
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    }
+                ]
+            },
+            {
+                "grouping_value": "Designer",
+                "results": [
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    },
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    },
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    }
+                ]
+            }
+        ]
+    },
 }
 
 
@@ -110,6 +311,17 @@ def test_query_response_multiple_group_columns():
 def test_query_response_multiple_selects():
     response = requests.post(API_URL, json=MULTIPLE_SELECTS_PAYLOAD)
     check_response(response, MULTIPLE_SELECTS_EXPECTED_RESULT)
+
+
+@pytest.mark.system
+def test_query_response_null_grouping():
+    response = requests.post(API_URL, json=NULL_GROUPING_PAYLOAD)
+    check_response(response, NULL_GROUPING_EXPECTED_RESULT)
+
+@pytest.mark.system
+def test_query_response_null_select():
+    response = requests.post(API_URL, json=NULL_SELECT_PAYLOAD)
+    check_response(response, NULL_SELECT_EXPECTED_RESULT)   
 
 
 @pytest.mark.system
