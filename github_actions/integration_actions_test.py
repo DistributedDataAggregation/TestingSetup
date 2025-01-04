@@ -1,5 +1,6 @@
 import pytest
 import requests
+from helper_results import results_compare
 
 # Adres endpointu API
 
@@ -17,8 +18,9 @@ def test_response_format():
             {"column": "Age", "function": "Minimum"},
             {"column": "Age", "function": "Average"}
         ],
-        "table_name": "test",
+        "table_name" :"small_size_some_keys_github_actions",
     }
+
 
     response = requests.post(API_URL, json=query_payload)
     assert response.status_code == 200, f"Expected HTTP 200, got {response.status_code}"
@@ -36,6 +38,8 @@ def test_response_format():
         for result in value["results"]:
             assert "value" in result, "'value' missing in one of the results."
 
+    # Sprawdzenie wynikow 
+    results_compare(query_payload=query_payload,response_json=response_json)
 
     for group in response_json["result"]["values"]:
         grouping_value = group["grouping_value"]
@@ -51,6 +55,7 @@ def test_response_format():
             assert results[0]["value"] == 86
             assert results[1]["value"] == -2
 
+    
 @pytest.mark.integration
 def test_response_multiple_selects():
     """Testuje, czy odpowiedź jest poprawna dla zapytania z wieloma funkcjami agregacji."""
@@ -60,7 +65,7 @@ def test_response_multiple_selects():
             {"column": "Cube Numbers", "function": "Maximum"},
             {"column": "Age", "function": "Minimum"},
         ],
-        "table_name": "test",
+        "table_name" :"small_size_some_keys_github_actions",
     }
 
     response = requests.post(API_URL, json=query_payload)
@@ -77,6 +82,10 @@ def test_response_multiple_selects():
         assert "results" in value, "'results' missing in one of the values."
         for result in value["results"]:
             assert "value" in result, "'value' missing in one of the results."
+
+    results_compare(query_payload=query_payload,response_json=response_json)
+
+    
 
 
 @pytest.mark.integration
@@ -86,9 +95,9 @@ def test_response_multiple_groups():
         "group_columns": ["Units of Time", "Surname"],
         "select": [
             {"column": "Cube Numbers", "function": "Maximum"},
-            {"column": "Age", "function": "Maximum"},
+            {"column": "Age", "function": "Minimum"},
         ],
-        "table_name": "test",
+        "table_name" :"small_size_some_keys_github_actions",
     }
 
     response = requests.post(API_URL, json=query_payload)
@@ -105,6 +114,8 @@ def test_response_multiple_groups():
         assert "results" in value, "'results' missing in one of the values."
         for result in value["results"]:
             assert "value" in result, "'value' missing in one of the results."
+
+    results_compare(query_payload=query_payload,response_json=response_json)
 
 
 @pytest.mark.integration
@@ -116,7 +127,7 @@ def test_parallel_requests():
             {"column": "Cube Numbers", "function": "Maximum"},
             {"column": "Age", "function": "Minimum"},
         ],
-        "table_name": "test",
+        "table_name" :"small_size_some_keys_github_actions",
     }
 
     query_payload_2 = {
@@ -125,7 +136,7 @@ def test_parallel_requests():
             {"column": "Cube Numbers", "function": "Maximum"},
             {"column": "Age", "function": "Minimum"},
         ],
-        "table_name": "test",
+        "table_name" :"small_size_some_keys_github_actions",
     }
 
     # Wysłanie zapytań równolegle
@@ -146,6 +157,9 @@ def test_parallel_requests():
     response_json_2 = response_2.json()
     assert "result" in response_json_2, "Key 'result' missing in response for query 2."
 
+    results_compare(query_payload=query_payload_2,response_json=response_json_2)
+    results_compare(query_payload=query_payload_1,response_json=response_json_1)
+
 
 @pytest.mark.integration
 def test_more_parallel_requests():
@@ -156,7 +170,7 @@ def test_more_parallel_requests():
             {"column": "Cube Numbers", "function": "Maximum"},
             {"column": "Age", "function": "Minimum"},
         ],
-        "table_name": "test",
+        "table_name" :"small_size_some_keys_github_actions",
     }
 
     # Wysłanie zapytań równolegle
@@ -172,6 +186,7 @@ def test_more_parallel_requests():
     response_json_1 = response_1.json()
     assert "result" in response_json_1, "Key 'result' missing in response for query 1."
 
+    results_compare(query_payload=query_payload,response_json=response_json_1)
     # Sprawdzenie odpowiedzi dla drugiego zapytania
     assert (
         response_2.status_code == 200
@@ -192,3 +207,7 @@ def test_more_parallel_requests():
     ), f"Expected HTTP 200 for query 4, got {response_4.status_code}"
     response_json_4 = response_4.json()
     assert "result" in response_json_4, "Key 'result' missing in response for query 4."
+    results_compare(query_payload=query_payload,response_json=response_json_4)
+
+
+

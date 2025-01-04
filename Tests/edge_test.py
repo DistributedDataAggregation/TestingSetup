@@ -1,6 +1,11 @@
 import pytest
 import requests
+import sys
+import os
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from github_actions.helper_results import results_compare
 # Adres API
 API_URL = "http://localhost:3000/api/v1/query"
 
@@ -22,7 +27,7 @@ missing_values_test = [
     {
         "name": "Handle Missing Values",
         "json": {
-            "group_columns": ["Age"],
+            "group_columns": ["Name"],
             "select": [
                 {"column": "Age", "function": "Average"}
             ],
@@ -125,6 +130,33 @@ empty_dataset_test = [
     }
 ]
 
+nulls_dataset_tests = [
+    {
+        "name": "Empty Dataset Handling",
+        "json": {
+            "group_columns": ["Name"],
+            "select": [
+                {"column": "Age", "function": "Average"},
+                {"column": "Age", "function": "Minimum"},
+                {"column": "Age", "function": "Maximum"}
+            ],
+            "table_name": "edge_case_nulls_1"
+        }
+    },
+       {
+        "name": "Empty Dataset Handling",
+        "json": {
+            "group_columns": ["Name"],
+            "select": [
+                {"column": "Age", "function": "Average"},
+                {"column": "Age", "function": "Minimum"},
+                {"column": "Age", "function": "Maximum"}
+            ],
+            "table_name": "edge_case_nulls_2"
+        }
+    }
+]
+
 @pytest.mark.parametrize("test", overflow_test)
 def test_overflow_queries(test):
     """Testuje przypadek overflow"""
@@ -164,6 +196,11 @@ def test_missing_values_queries(test):
         for result in value["results"]:
             assert "value" in result, "'value' missing in one of the results."
 
+    results_compare(
+        query_payload=test["json"],
+        response_json=response_json,
+        file_path = "/home/data/missing_values_dataset.parquet"
+    )
     
 
 @pytest.mark.parametrize("test", long_strings_test)
@@ -236,3 +273,27 @@ def test_zero_values_queries(test):
 #         for result in value["results"]:
 #             assert "value" in result, "'value' missing in one of the results."
 
+@pytest.mark.parametrize("test", nulls_dataset_tests)
+def test_empty_nulls_edge(test):
+    """Testuje przypadek pustego datasetu"""
+    print(f"Running test: {test['name']}")
+
+    response = requests.post(API_URL, json=test["json"])
+    assert response.status_code == 200, f"Expected HTTP 200, got {response.status_code}"
+    response_json = response.json()
+        # Walidacja wyników
+    assert "result" in response_json, "Key 'result' missing in response."
+    assert "values" in response_json["result"], "Key 'values' missing in 'result'."
+    for value in response_json["result"]["values"]:
+        assert "grouping_value" in value, "'grouping_value' missing in one of the values."
+        for result in value["results"]:
+            assert "value" in result, "'value' missing in one of the results."  
+
+    print(response_json["result"]["values"])
+
+    # nie zadziala przez null null 
+    # results_compare(
+    #     query_payload=test["json"],
+    #     response_json=response_json,
+    #     file_path = f"/home/data/{test['json']['table_name']}.parquet"
+    # )
