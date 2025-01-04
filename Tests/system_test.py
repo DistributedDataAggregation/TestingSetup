@@ -172,6 +172,135 @@ NULL_GROUPING_EXPECTED_RESULT = {
     },
 }
 
+NULL_SELECT_PAYLOAD = {
+    "group_columns": [
+    "Position"
+  ],
+  "select": [
+  {
+      "column": "Age",
+      "function": "Average"
+    },
+   {
+      "column": "Age",
+      "function": "Minimum"
+    },
+   {
+      "column": "Age",
+      "function": "Maximum"
+    }
+  ],
+  "table_name": "data_null"
+}
+
+NULL_SELECT_EXPECTED_RESULT = {
+    "result": {
+        "error": None,
+        "values": [
+            {
+                "grouping_value": "Manager",
+                "results": [
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    },
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    },
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    }
+                ]
+            },
+            {
+                "grouping_value": "null",
+                "results": [
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    },
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    },
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    }
+                ]
+            },
+            {
+                "grouping_value": "Developer",
+                "results": [
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    },
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    },
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    }
+                ]
+            },
+            {
+                "grouping_value": "CEO",
+                "results": [
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    },
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    },
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    }
+                ]
+            },
+            {
+                "grouping_value": "Designer",
+                "results": [
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    },
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    },
+                    {
+                        "value": 0,
+                        "count": 0,
+                        "is_null": True
+                    }
+                ]
+            }
+        ]
+    },
+}
+
 
 @pytest.mark.system
 def test_query_response_multiple_group_columns():
@@ -188,6 +317,11 @@ def test_query_response_multiple_selects():
 def test_query_response_null_grouping():
     response = requests.post(API_URL, json=NULL_GROUPING_PAYLOAD)
     check_response(response, NULL_GROUPING_EXPECTED_RESULT)
+
+@pytest.mark.system
+def test_query_response_null_select():
+    response = requests.post(API_URL, json=NULL_SELECT_PAYLOAD)
+    check_response(response, NULL_SELECT_EXPECTED_RESULT)   
 
 
 @pytest.mark.system
