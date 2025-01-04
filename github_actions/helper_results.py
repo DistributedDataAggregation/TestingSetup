@@ -77,111 +77,16 @@ def compare_results(pandas_result, api_result, select):
 
     api_df = pd.DataFrame(api_values, columns=columns)
 
-
-    
     pandas_result = pandas_result.sort_values(by=columns[0]).reset_index(drop=True)
     api_df = api_df.sort_values(by=columns[0]).reset_index(drop=True)
-    print(api_df)
 
     if pandas_result.equals(api_df):
         print("Wyniki Pandas i API są identyczne.")
         
-    else: # Porównanie
+    else: 
         print("Wyniki Pandas i API różnią się!")
         print("\nWyniki Pandas:")
         print(pandas_result)
         print("\nWyniki API:")
         print(api_df)
         assert False, "Wyniki Pandas i API różnią się!"
-
-
-# current_dir = os.path.dirname(os.path.abspath(__file__))
-# data_dir = os.path.join(current_dir, "data")als(api_df):
-# file_path = os.path.join(data_dir, "test.parquet")
-
-# df_test_parquet= pd.read_parquet(file_path)
-
-# query_payload1 = {
-#     "group_columns": ["Surname"],
-#     "select": [
-#         {"column": "Age", "function": "Maximum"},
-#         {"column": "Age", "function": "Average"},
-#         {"column": "Age", "function": "Minimum"}
-     
-#     ],
-#     "table_name": "test",
-# }
-
-# overflow_result = run_query_pandas(df_test_parquet, query_payload1["group_columns"], query_payload1["select"])
-# print(overflow_result)
-
-# query_payload1 = {
-#     "group_columns": ["Surname"],
-#     "select": [
-#         {"column": "Age", "function": "Maximum"},
-#         {"column": "Age", "function": "Average"},
-#         {"column": "Age", "function": "Minimum"}
-     
-#     ],
-#     "table_name": "test",
-# }
-
-# overflow_result = run_query_pandas(df_test_parquet, query_payload1["group_columns"], query_payload1["select"])
-# print(overflow_result)
-
-# query_payload1 = {
-#     "group_columns": ["Surname"],
-#     "select": [
-#         {"column": "Age", "function": "Maximum"},
-#         {"column": "Age", "function": "Average"},
-#         {"column": "Age", "function": "Minimum"}
-     
-#     ],
-#     "table_name": "test",
-# }
-
-# overflow_result = run_query_pandas(df_test_parquet, query_payload1["group_columns"], query_payload1["select"])
-# print(overflow_result)
-
-# query_payload1 = {
-#     "group_columns": ["Surname"],
-#     "select": [
-#         {"column": "Age", "function": "Maximum"},
-#         {"column": "Age", "function": "Average"},
-#         {"column": "Age", "function": "Minimum"}
-     
-#     ],
-#     "table_name": "test",
-# }
-
-# overflow_result = run_query_pandas(df_test_parquet, query_payload1["group_columns"], query_payload1["select"])
-# print(overflow_result)
-
-# query_payload1 = {
-#     "group_columns": ["Surname"],
-#     "select": [
-#         {"column": "Age", "function": "Maximum"},
-#         {"column": "Age", "function": "Average"},
-#         {"column": "Age", "function": "Minimum"}
-     
-#     ],
-#     "table_name": "test",
-# }
-
-# overflow_result = run_query_pandas(df_test_parquet, query_payload1["group_columns"], query_payload1["select"])
-# print(overflow_result)
-
-# query_payload1 = {
-#     "group_columns": ["Surname"],
-#     "select": [
-#         {"column": "Age", "function": "Maximum"},
-#         {"column": "Age", "function": "Average"},
-#         {"column": "Age", "function": "Minimum"}
-     
-#     ],
-#     "table_name": "test",
-# }
-
-# overflow_result = run_query_pandas(df_test_parquet, query_payload1["group_columns"], query_payload1["select"])
-# print(overflow_result)
-

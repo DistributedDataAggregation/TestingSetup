@@ -1,9 +1,11 @@
 import pytest
 import requests
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from config import API_URL
 
-# Adres API
-API_URL = "http://localhost:3000/api/v1/query"
-# Change 500 to 400 or 404
+
 
 non_existent_column_test = [
     {

@@ -1,8 +1,6 @@
 import pytest
 import requests
-
-# Adres endpointu API
-API_URL = "http://localhost:80/api/v1/query"
+from config import API_URL
 
 @pytest.mark.integration
 def test_response_format():
@@ -17,7 +15,7 @@ def test_response_format():
                 "function": "Maximum"
             }
         ],
-        "table_name": "testa1"
+        "table_name": "medium_size_few_keys_karol"
     }
     
     response = requests.post(API_URL, json=query_payload)
@@ -51,7 +49,7 @@ def test_response_multiple_selects():
                 "function": "Minimum"
             }
         ],
-        "table_name": "testb"
+        "table_name": "medium_size_few_keys_karol"
     }
     
     response = requests.post(API_URL, json=query_payload)
@@ -84,7 +82,7 @@ def test_response_multiple_groups():
                 "function": "Minimum"
             }
         ],
-        "table_name": "testb"
+        "table_name": "medium_size_few_keys_karol"
     }
     
     response = requests.post(API_URL, json=query_payload)
@@ -113,7 +111,7 @@ def test_parallel_requests():
                 "function": "Maximum"
             }
         ],
-        "table_name": "testa1"
+        "table_name": "medium_size_few_keys_karol"
     }
     
     query_payload_2 = {
@@ -130,7 +128,7 @@ def test_parallel_requests():
                 "function": "Minimum"
             }
         ],
-        "table_name": "testb"
+        "table_name": "medium_size_few_keys_karol"
     }
     
     # Wysłanie zapytań równolegle
@@ -160,7 +158,7 @@ def test_more_parallel_requests():
                 "function": "Maximum"
             }
         ],
-        "table_name": "testa1"
+        "table_name": "medium_size_few_keys_karol"
     }
     
     # Wysłanie zapytań równolegle

@@ -4,10 +4,9 @@ import sys
 import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
+from config import API_URL
 from github_actions.helper_results import results_compare
-# Adres API
-API_URL = "http://localhost:3000/api/v1/query"
+
 
 # Zestawy testów
 overflow_test = [

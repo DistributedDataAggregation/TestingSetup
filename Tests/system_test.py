@@ -1,8 +1,9 @@
 import pytest
 import requests
-
-# Adres endpointu API
-API_URL = "http://localhost:80/api/v1/query"
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from config import API_URL
 
 # Dane wejściowe dla testu
 QUERY_PAYLOAD = {
