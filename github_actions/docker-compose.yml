@@ -16,9 +16,9 @@ services:
       app_net:
         ipv4_address: 172.20.0.2
     env_file:
-      - ./.env 
+      - .env 
     volumes:
-      - ./data:/home/data/
+      - ./test.parquet:/home/data/test.parquet
     
   executor2:
     image: executor-image
@@ -26,9 +26,9 @@ services:
       app_net:
         ipv4_address: 172.20.0.3
     env_file:
-      - ./.env
+      - .env
     volumes:
-      - ./data:/home/data/
+      - ./test.parquet:/home/data/test.parquet
 
   executor3:
     image: executor-image
@@ -36,9 +36,9 @@ services:
       app_net:
         ipv4_address: 172.20.0.4
     env_file:
-      - ./.env
+      - .env
     volumes:
-      - ./data:/home/data/
+      - ./test.parquet:/home/data/test.parquet
 
   controller1:
     image: controller-image
@@ -46,11 +46,11 @@ services:
       app_net:
         ipv4_address: 172.20.0.12
     env_file:
-      - ./.env
+      - .env
     environment:
-        - MAIN_EXECUTOR_IDX=0
+      - MAIN_EXECUTOR=172.20.0.2
     volumes:
-      - ./data:/home/data/
+      - ./test.parquet:/home/data/test.parquet
 
   controller2:
     image: controller-image
@@ -58,11 +58,11 @@ services:
       app_net:
         ipv4_address: 172.20.0.13
     env_file:
-      - ./.env
+      - .env
     environment:
-      - MAIN_EXECUTOR_IDX=1
+      - MAIN_EXECUTOR=172.20.0.3
     volumes:
-      - ./data:/home/data/
+      - ./test.parquet:/home/data/test.parquet
 
   controller3:
     image: controller-image
@@ -70,11 +70,11 @@ services:
       app_net:
         ipv4_address: 172.20.0.14
     env_file:
-      - ./.env
+      - .env
     environment:
-        - MAIN_EXECUTOR_IDX=2
+      - MAIN_EXECUTOR=172.20.0.4
     volumes:
-      - ./data:/home/data/
+      - ./test.parquet:/home/data/test.parquet
 
 networks:
   app_net:

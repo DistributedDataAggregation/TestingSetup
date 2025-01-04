@@ -166,7 +166,7 @@ tests= [
                 }
             },
             {
-                "name": "Medium",
+                "name": "Medium query 1",
                 "json": {
                     "group_columns": ["Position"],
                     "select": [
@@ -177,7 +177,7 @@ tests= [
                 }
             },
             {
-                "name": "Parallel query 5",
+                "name": "Medum query 2",
                 "json": {
                     "group_columns": ["Position"],
                     "select": [
