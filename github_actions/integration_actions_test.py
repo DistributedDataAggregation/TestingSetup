@@ -14,7 +14,7 @@ def test_response_format():
         "group_columns": ["Surname"],
         "select": [
             {"column": "Age", "function": "Maximum"},
-            {"column": "Age", "function": "Minimal"},
+            {"column": "Age", "function": "Minimum"},
             {"column": "Age", "function": "Average"}
         ],
         "table_name": "test",
