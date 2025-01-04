@@ -146,6 +146,7 @@ def test_overflow_queries(test):
         print(f"FAILED: {test['name']} - {e}")
         pytest.fail(f"Test failed for query {test['name']}")
 
+
 @pytest.mark.parametrize("test", missing_values_test)
 def test_missing_values_queries(test):
     """Testuje przypadek brakujących wartości"""
@@ -184,7 +185,7 @@ def test_long_strings_queries(test):
 
 
 @pytest.mark.parametrize("test", negative_values_test)
-def test_long_strings_queries(test):
+def test_negative_value_queries(test):
     """Testuje przypadek negatywnych wartosci"""
     print(f"Running test: {test['name']}")
 
@@ -202,7 +203,7 @@ def test_long_strings_queries(test):
 
 
 @pytest.mark.parametrize("test", zero_values_test)
-def test_long_strings_queries(test):
+def test_zero_values_queries(test):
     """Testuje przypadek zerowych wartosci"""
     print(f"Running test: {test['name']}")
 
@@ -219,7 +220,7 @@ def test_long_strings_queries(test):
 
 
 # @pytest.mark.parametrize("test", empty_dataset_test)
-# def test_long_strings_queries(test):
+# def test_empty_dataset_queries(test):
 #     """Testuje przypadek pustego datasetu"""
 #     print(f"Running test: {test['name']}")
 

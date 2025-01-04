@@ -20,7 +20,7 @@ tests= [
                     "group_columns": ["Units of Time", "Surname"],
                     "select": [
                         {"column": "Cube Numbers", "function": "Maximum"},
-                        {"column": "Age", "function": "Maximum"}
+                        {"column": "Age", "function": "Minimum"}
                     ],
                     "table_name": "small_size_some_keys_github_actions"
                 }
@@ -166,7 +166,7 @@ tests= [
                 }
             },
             {
-                "name": "Medium query 1",
+                "name": "Medium",
                 "json": {
                     "group_columns": ["Position"],
                     "select": [
@@ -177,7 +177,7 @@ tests= [
                 }
             },
             {
-                "name": "Medum query 2",
+                "name": "Parallel query 5",
                 "json": {
                     "group_columns": ["Position"],
                     "select": [
