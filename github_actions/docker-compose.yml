@@ -18,7 +18,7 @@ services:
     env_file:
       - ./.env 
     volumes:
-      - ./test.parquet:/home/data/test.parquet
+      - ./data:/home/data/
     
   executor2:
     image: executor-image
@@ -28,7 +28,7 @@ services:
     env_file:
       - ./.env
     volumes:
-      - ./test.parquet:/home/data/test.parquet
+      - ./data:/home/data/
 
   executor3:
     image: executor-image
@@ -38,7 +38,7 @@ services:
     env_file:
       - ./.env
     volumes:
-      - ./test.parquet:/home/data/test.parquet
+      - ./data:/home/data/
 
   controller1:
     image: controller-image
@@ -50,7 +50,7 @@ services:
     environment:
         - MAIN_EXECUTOR_IDX=0
     volumes:
-      - ./test.parquet:/home/data/test.parquet
+      - ./data:/home/data/
 
   controller2:
     image: controller-image
@@ -62,7 +62,7 @@ services:
     environment:
       - MAIN_EXECUTOR_IDX=1
     volumes:
-      - ./test.parquet:/home/data/test.parquet
+      - ./data:/home/data/
 
   controller3:
     image: controller-image
@@ -74,7 +74,7 @@ services:
     environment:
         - MAIN_EXECUTOR_IDX=2
     volumes:
-      - ./test.parquet:/home/data/test.parquet
+      - ./data:/home/data/
 
 networks:
   app_net:

@@ -7,7 +7,9 @@ __pycache__/
 *.so
 
 # Data
-/data/ala.parquet
+/data
+__pycache__
+.pytest_cache
 
 # Distribution / packaging
 .Python
@@ -134,7 +136,7 @@ celerybeat.pid
 # .env
 # .venv
 # env/
-venv/
+# venv/
 # ENV/
 # env.bak/
 # venv.bak/
