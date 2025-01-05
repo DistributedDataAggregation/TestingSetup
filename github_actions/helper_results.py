@@ -2,18 +2,22 @@ import pandas as pd
 import os
 
 
+def results_compare(query_payload, response_json, files_path=None):
 
-def results_compare(query_payload, response_json, file_path=None):
-
-    if not file_path:
+    if not files_path:
         current_dir = os.path.dirname(os.path.abspath(__file__))
         data_dir = os.path.join(current_dir, "data")
         file_path = os.path.join(data_dir, "small_size_some_keys_github_actions.parquet")
+        files_path = [file_path]
     
-    df_test_parquet= pd.read_parquet(file_path)
+    df_test_parquet = pd.concat([pd.read_parquet(file) for file in files_path], ignore_index=True)
+     
     pandas_result = run_query_pandas(df_test_parquet, query_payload["group_columns"], query_payload["select"])
+    
     pandas_result = pandas_result.fillna("null")
-
+    # print(pandas_result)
+    # print(response_json["result"]["values"])
+    
     compare_results(pandas_result, response_json["result"]["values"],query_payload["select"])
 
 
@@ -65,11 +69,24 @@ def compare_results(pandas_result, api_result, select):
         for idx, res in enumerate(value["results"]):
             column_name = select[idx]["column"]
             function_name = select[idx]["function"]
+            
+            value_string = "value"  
+
+            if "result_type" in res:
+                result_type = res["result_type"]
+                
+                if result_type == "INT":
+                    value_string = "value"
+                elif result_type == "DOUBLE":
+                    value_string = "double_value"
+                elif result_type == "FLOAT":
+                    value_string = "float_value"
+
 
             if function_name == "Average" and res["count"] > 0:
-                result_values[f"{column_name}_{function_name}"] = res["value"] / res["count"]
+                result_values[f"{column_name}_{function_name}"] = res[value_string] / res["count"]
             else:
-                result_values[f"{column_name}_{function_name}"] = res["value"]
+                result_values[f"{column_name}_{function_name}"] = res[value_string]
 
         api_values.append([grouping_value] + list(result_values.values()))
 
@@ -82,7 +99,7 @@ def compare_results(pandas_result, api_result, select):
 
     if pandas_result.equals(api_df):
         print("Wyniki Pandas i API są identyczne.")
-        
+      
     else: 
         print("Wyniki Pandas i API różnią się!")
         print("\nWyniki Pandas:")

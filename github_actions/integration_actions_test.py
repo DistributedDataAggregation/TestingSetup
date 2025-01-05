@@ -206,4 +206,32 @@ def test_more_parallel_requests_actions():
     results_compare(query_payload=query_payload,response_json=response_json_4)
 
 
+@pytest.mark.integration
+def test_splitting_files_to_nodes():
+    """Testuje, czy nody dobrze obsluguja podzial plikow."""
+    query_payload = {
+        "group_columns": ["Name"],
+        "select": [
+            {"column": "Salary", "function": "Average"},
+            {"column": "Salary", "function": "Minimum"},
+            {"column": "Salary", "function": "Maximum"},
+            {"column": "Age", "function": "Minimum"},
+        ],
+        "table_name" :"float_3_files_test",
+    }
 
+    response = requests.post(API_URL, json=query_payload)
+
+    # Sprawdzenie odpowiedzi dla pierwszego zapytania
+    assert (
+        response.status_code == 200
+    ), f"Expected HTTP 200 for query 1, got {response.status_code}"
+    response_json = response.json()
+    assert "result" in response_json, "Key 'result' missing in response for query."
+
+
+    results_compare(query_payload=query_payload,response_json=response_json,files_path=[
+        "./data/float_3_files_test1.parquet",
+        "./data/float_3_files_test2.parquet",
+        "./data/float_3_files_test3.parquet"
+    ])
