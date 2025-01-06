@@ -20,7 +20,6 @@ def test_response_format_actions():
         "table_name" :"small_size_some_keys_github_actions",
     }
 
-
     response = requests.post(API_URL, json=query_payload)
     assert response.status_code == 200, f"Expected HTTP 200, got {response.status_code}"
 
@@ -235,3 +234,142 @@ def test_splitting_files_to_nodes():
         "./data/float_3_files_test2.parquet",
         "./data/float_3_files_test3.parquet"
     ])
+
+@pytest.mark.integration
+def test_sum_and_count():
+    """
+    Testuje, czy funkcje count i sum działają poprawnie
+    """
+    query_payload = {
+        "group_columns": [
+            "Colors", "Eye Colors", "Sports", "Car Brands", "Zodiac Signs"
+        ],
+        "select": [
+            {"column": "Age", "function": "Count"},
+            {"column": "Fibonacci Numbers", "function": "Maximum"},
+            {"column": "Cube Numbers", "function": "Maximum"},
+            {"column": "Kraje", "function": "Count"},
+            {"column": "Days of the Month", "function": "Sum"},
+            {"column": "Negative Numbers", "function": "Average"},
+            {"column": "Prime Numbers", "function": "Average"}
+        ],
+        "table_name": "small_size_some_keys_github_actions"
+    }
+
+    response = requests.post(API_URL, json=query_payload)
+
+    # Sprawdzenie odpowiedzi dla pierwszego zapytania
+    assert response.status_code == 200, (
+        f"Expected HTTP 200 for query 1, got {response.status_code}"
+    )
+    
+    response_json = response.json()
+    assert "result" in response_json, "Key 'result' missing in response for query."
+    
+    results_compare(query_payload=query_payload, response_json=response_json)
+
+@pytest.mark.integration
+def test_sum_and_count_part2():
+    """
+    Testuje, czy funkcje count i sum działają poprawnie
+    """
+    query_payload =  {
+                    "group_columns": ["Colors", "Eye Colors", "Sports", "Zodiac Signs"],
+                    "select": [
+                        {"column": "Age", "function": "Average"},
+                        {"column": "Fibonacci Numbers", "function": "Maximum"},
+                        {"column": "Cube Numbers", "function": "Count"},
+                        {"column": "Odd Numbers", "function": "Average"},
+                        {"column": "Shoe Sizes", "function": "Maximum"},
+                        {"column": "Digits", "function": "Average"},
+                        {"column": "Kraje", "function": "Sum"},
+                        {"column": "Days of the Month", "function": "Sum"},
+                        {"column": "Negative Numbers", "function": "Average"},
+                        {"column": "Prime Numbers", "function": "Count"}
+                    ],
+                    "table_name": "small_size_some_keys_github_actions"
+                }
+
+    response = requests.post(API_URL, json=query_payload)
+
+    # Sprawdzenie odpowiedzi dla pierwszego zapytania
+    assert response.status_code == 200, (
+        f"Expected HTTP 200 for query 1, got {response.status_code}"
+    )
+    
+    response_json = response.json()
+    assert "result" in response_json, "Key 'result' missing in response for query."
+    
+    results_compare(query_payload=query_payload, response_json=response_json)
+
+@pytest.mark.integration
+def test_group_by_mixed_types():
+    """
+    Testuje, czy odpowiedź jest poprawna dla grupowania po kolumnach stringowych i integerowych.
+    """
+    query_payload = {
+        "group_columns": ["Colors", "Shoe Sizes"],
+        "select": [
+            {"column": "Age", "function": "Maximum"},
+            {"column": "Digits", "function": "Average"},
+            {"column": "Cube Numbers", "function": "Sum"}
+        ],
+        "table_name": "small_size_some_keys_github_actions",
+    }
+
+    response = requests.post(API_URL, json=query_payload)
+
+    # Sprawdzenie odpowiedzi
+    assert response.status_code == 200, (
+        f"Expected HTTP 200 for query, got {response.status_code}"
+    )
+
+    response_json = response.json()
+    assert "result" in response_json, "Key 'result' missing in response."
+    assert "values" in response_json["result"], "Key 'values' missing in 'result'."
+
+    for value in response_json["result"]["values"]:
+        assert (
+            "grouping_value" in value
+        ), "'grouping_value' missing in one of the values."
+        assert "results" in value, "'results' missing in one of the values."
+        for result in value["results"]:
+            assert "value" in result, "'value' missing in one of the results."
+
+    results_compare(query_payload=query_payload, response_json=response_json)
+
+@pytest.mark.integration
+def test_group_by_integers():
+    """
+    Testuje, czy odpowiedź jest poprawna dla grupowania po kolumnach typu integer.
+    """
+    query_payload = {
+        "group_columns": ["Shoe Sizes", "Cube Numbers"],
+        "select": [
+            {"column": "Age", "function": "Maximum"},
+            {"column": "Digits", "function": "Sum"},
+            {"column": "Fibonacci Numbers", "function": "Average"}
+        ],
+        "table_name": "small_size_some_keys_github_actions",
+    }
+
+    response = requests.post(API_URL, json=query_payload)
+
+    # Sprawdzenie odpowiedzi
+    assert response.status_code == 200, (
+        f"Expected HTTP 200 for query, got {response.status_code}"
+    )
+
+    response_json = response.json()
+    assert "result" in response_json, "Key 'result' missing in response."
+    assert "values" in response_json["result"], "Key 'values' missing in 'result'."
+
+    for value in response_json["result"]["values"]:
+        assert (
+            "grouping_value" in value
+        ), "'grouping_value' missing in one of the values."
+        assert "results" in value, "'results' missing in one of the values."
+        for result in value["results"]:
+            assert "value" in result, "'value' missing in one of the results."
+
+    results_compare(query_payload=query_payload, response_json=response_json)
