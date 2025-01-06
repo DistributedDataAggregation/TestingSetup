@@ -32,7 +32,8 @@ def run_query_pandas(df, group_columns, select):
         "Average": "mean",
         "Maximum": "max",
         "Minimum": "min",
-        "Sum": "sum"
+        "Sum": "sum",
+        "Count":"count"
     }
 
     for sel in select:
@@ -86,6 +87,8 @@ def compare_results(pandas_result, api_result, select):
                 # Calculate and round to 5 decimal points
                 avg_value = res[value_string] / res["count"]
                 result_values[f"{column_name}_{function_name}"] = round(avg_value, 6)
+            elif function_name == "Count":
+                result_values[f"{column_name}_{function_name}"] = res["count"]
             else:
                 result_values[f"{column_name}_{function_name}"] = res[value_string]
 
