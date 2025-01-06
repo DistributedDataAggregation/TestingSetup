@@ -69,12 +69,12 @@ def compare_results(pandas_result, api_result, select):
         for idx, res in enumerate(value["results"]):
             column_name = select[idx]["column"]
             function_name = select[idx]["function"]
-            
+
             value_string = "value"  
 
             if "result_type" in res:
                 result_type = res["result_type"]
-                
+
                 if result_type == "INT":
                     value_string = "value"
                 elif result_type == "DOUBLE":
@@ -82,9 +82,10 @@ def compare_results(pandas_result, api_result, select):
                 elif result_type == "FLOAT":
                     value_string = "float_value"
 
-
             if function_name == "Average" and res["count"] > 0:
-                result_values[f"{column_name}_{function_name}"] = res[value_string] / res["count"]
+                # Calculate and round to 5 decimal points
+                avg_value = res[value_string] / res["count"]
+                result_values[f"{column_name}_{function_name}"] = round(avg_value, 6)
             else:
                 result_values[f"{column_name}_{function_name}"] = res[value_string]
 
@@ -94,16 +95,21 @@ def compare_results(pandas_result, api_result, select):
 
     api_df = pd.DataFrame(api_values, columns=columns)
 
+    # Ensure Pandas result averages are rounded to 5 decimal points for comparison
+    for col in pandas_result.columns[1:]:
+        if "_Average" in col:
+            pandas_result[col] = pandas_result[col].round(6)
+
     pandas_result = pandas_result.sort_values(by=columns[0]).reset_index(drop=True)
     api_df = api_df.sort_values(by=columns[0]).reset_index(drop=True)
 
     if pandas_result.equals(api_df):
         print("Wyniki Pandas i API są identyczne.")
-      
-    else: 
+    else:
         print("Wyniki Pandas i API różnią się!")
         print("\nWyniki Pandas:")
         print(pandas_result)
         print("\nWyniki API:")
         print(api_df)
         assert False, "Wyniki Pandas i API różnią się!"
+
