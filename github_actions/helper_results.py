@@ -48,7 +48,7 @@ def run_query_pandas(df, group_columns, select):
     result = df.groupby(group_columns, dropna=False).agg(**agg_funcs).reset_index()
 
     if len(group_columns) > 1:
-        result['grouping_value'] = result[group_columns].agg('|'.join, axis=1)
+        result['grouping_value'] = result[group_columns].astype(str).agg('|'.join, axis=1)
         result = result.drop(columns=group_columns)
         columns = ['grouping_value'] + [col for col in result.columns if col != 'grouping_value']
         result = result[columns]
