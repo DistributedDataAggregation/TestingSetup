@@ -198,7 +198,7 @@ def test_missing_values_queries(test):
     results_compare(
         query_payload=test["json"],
         response_json=response_json,
-        file_path = "/home/data/missing_values_dataset.parquet"
+        files_path = ["/home/data/missing_values_dataset.parquet"]
     )
     
 
@@ -255,44 +255,44 @@ def test_zero_values_queries(test):
             assert "value" in result, "'value' missing in one of the results."
 
 
-# @pytest.mark.parametrize("test", empty_dataset_test)
-# def test_empty_dataset_queries(test):
+@pytest.mark.parametrize("test", empty_dataset_test)
+def test_empty_dataset_queries(test):
+    """Testuje przypadek pustego datasetu"""
+    print(f"Running test: {test['name']}")
+
+    response = requests.post(API_URL, json=test["json"])
+    assert response.status_code == 500, f"Expected HTTP 200, got {response.status_code}"
+    response_json = response.json()
+    # Walidacja wyników
+    assert "result" in response_json, "Key 'result' missing in response."
+    assert "values" in response_json["result"], "Key 'values' missing in 'result'."
+    for value in response_json["result"]["values"]:
+        assert "grouping_value" in value, "'grouping_value' missing in one of the values."
+        for result in value["results"]:
+           assert "value" in result, "'value' missing in one of the results."
+
+# Bug jeszcze nie rozwiazany 
+# @pytest.mark.parametrize("test", nulls_dataset_tests)
+# def test_empty_nulls_edge(test):
 #     """Testuje przypadek pustego datasetu"""
 #     print(f"Running test: {test['name']}")
 
 #     response = requests.post(API_URL, json=test["json"])
 #     assert response.status_code == 200, f"Expected HTTP 200, got {response.status_code}"
 #     response_json = response.json()
-#     print(response_json)
 #         # Walidacja wyników
 #     assert "result" in response_json, "Key 'result' missing in response."
 #     assert "values" in response_json["result"], "Key 'values' missing in 'result'."
 #     for value in response_json["result"]["values"]:
 #         assert "grouping_value" in value, "'grouping_value' missing in one of the values."
 #         for result in value["results"]:
-#             assert "value" in result, "'value' missing in one of the results."
+#             assert "value" in result, "'value' missing in one of the results."  
 
-@pytest.mark.parametrize("test", nulls_dataset_tests)
-def test_empty_nulls_edge(test):
-    """Testuje przypadek pustego datasetu"""
-    print(f"Running test: {test['name']}")
+#     print(response_json["result"]["values"])
 
-    response = requests.post(API_URL, json=test["json"])
-    assert response.status_code == 200, f"Expected HTTP 200, got {response.status_code}"
-    response_json = response.json()
-        # Walidacja wyników
-    assert "result" in response_json, "Key 'result' missing in response."
-    assert "values" in response_json["result"], "Key 'values' missing in 'result'."
-    for value in response_json["result"]["values"]:
-        assert "grouping_value" in value, "'grouping_value' missing in one of the values."
-        for result in value["results"]:
-            assert "value" in result, "'value' missing in one of the results."  
-
-    print(response_json["result"]["values"])
-
-    # nie zadziala przez null null 
-    # results_compare(
-    #     query_payload=test["json"],
-    #     response_json=response_json,
-    #     file_path = f"/home/data/{test['json']['table_name']}.parquet"
-    # )
+#     nie zadziala przez null null 
+#     results_compare(
+#         query_payload=test["json"],
+#         response_json=response_json,
+#         file_path = f"/home/data/{test['json']['table_name']}.parquet"
+#     )

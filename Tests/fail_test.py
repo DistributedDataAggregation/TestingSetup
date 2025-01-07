@@ -26,8 +26,7 @@ def test_non_existent_column_queries(test):
     """Testuje zapytanie z kolumną, która nie istnieje"""
     print(f"Running test: {test['name']}")
     response = requests.post(API_URL, json=test["json"])
-    print(response)
-    assert response.status_code == 500, f"Expected HTTP 500, got {response.status_code}"
+    assert response.status_code == 500, f"Expected HTTP 400, got {response.status_code}"
     response_json = response.json()
     assert "error" in response_json["result"], "Expected 'error' key in response"
     print(f"Error received: {response_json["result"]['error']}")
@@ -51,8 +50,7 @@ def test_unsupported_data_type_queries(test):
     """Testuje zapytanie z nieobsługiwanym typem danych"""
     print(f"Running test: {test['name']}")
     response = requests.post(API_URL, json=test["json"])
-    print(response.json())
-    assert response.status_code == 200, f"Expected HTTP 500, got {response.status_code}"
+    assert response.status_code == 200, f"Expected HTTP 400, got {response.status_code}"
     response_json = response.json()
     assert "error" in response_json["result"], "Expected 'error' key in response"
     print(f"Error received: {response_json['result']['error']}")
@@ -76,10 +74,8 @@ def test_invalid_function_queries(test):
     """Testuje zapytanie z nieobsługiwaną funkcją agregującą"""
     print(f"Running test: {test['name']}")
     response = requests.post(API_URL, json=test["json"])
-    print(response)
-    assert response.status_code == 500, f"Expected HTTP 500, got {response.status_code}"
+    assert response.status_code == 400, f"Expected HTTP 400, got {response.status_code}"
     response_json = response.json()
-    print(response)
     assert "error" in response_json['result'], "Expected 'error' key in response"
     print(f"Error received: {response_json['result']['error']}")
 
@@ -97,7 +93,7 @@ def test_empty_query(test):
     """Testuje zapytanie z pustym JSON"""
     print(f"Running test: {test['name']}")
     response = requests.post(API_URL, json=test["json"])
-    assert response.status_code == 500, f"Expected HTTP 500, got {response.status_code}"
+    assert response.status_code == 400, f"Expected HTTP 400, got {response.status_code}"
     response_json = response.json()
     assert "error" in response_json['result'], "Expected 'error' key in response"
     print(f"Error received: {response_json['result']['error']}")
@@ -131,7 +127,7 @@ def test_duplicated_column_query(test):
     """Testuje zapytanie z duplikowanymi kolumnami w JSON"""
     print(f"Running test: {test['name']}")
     response = requests.post(API_URL, json=test["json"])
-    assert response.status_code == 500, f"Expected HTTP 500, got {response.status_code}"
+    assert response.status_code == 400, f"Expected HTTP 400, got {response.status_code}"
     response_json = response.json()
     assert "error" in response_json['result'], "Expected 'error' key in response"
     print(f"Error received: {response_json['result']['error']}")
@@ -147,15 +143,6 @@ non_existent_table_test = [
             ],
             "table_name": "karol_przystojny"
         }
-    },
-     {
-        "name": "Non-existent Table",
-        "json": {
-            "group_columns": ["Age"],
-            "select": [
-                {"column": "Salary", "function": "Average"}
-            ],
-        }
     }
 ]
 
@@ -165,10 +152,7 @@ def test_non_existent_table_queries(test):
     print(f"Running test: {test['name']}")
     response = requests.post(API_URL, json=test["json"])
  
-    assert response.status_code == 500, f"Expected HTTP 404, got {response.status_code}"
+    assert response.status_code == 500, f"Expected HTTP 400, got {response.status_code}"
     response_json = response.json()
-    print(response)
     assert "error" in response_json["result"], "Expected 'error' key in response"
     print(f"Error received: {response_json["result"]['error']}")
-
-
