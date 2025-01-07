@@ -189,10 +189,11 @@ tests= [
             {
                 "name": "Medium query 1",
                 "json": {
-                    "group_columns": ["Position", "Surname", "Age"],
+                    "group_columns": ["Position", "Surname"],
                     "select": [
                         {"column": "Salary", "function": "Maximum"},
-                        {"column": "Age", "function": "Minimum"}
+                        {"column": "Age", "function": "Minimum"},
+                        {"column": "Age", "function": "Average"}
                     ],
                     "table_name": "medium_size_few_keys_karol"
                 }

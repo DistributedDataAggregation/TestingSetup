@@ -215,12 +215,13 @@ def test_splitting_files_to_nodes():
             {"column": "Salary", "function": "Minimum"},
             {"column": "Salary", "function": "Maximum"},
             {"column": "Age", "function": "Minimum"},
+            {"column": "Age", "function": "Sum"},
+            {"column": "Age", "function": "Count"},
         ],
         "table_name" :"float_3_files_test",
     }
 
     response = requests.post(API_URL, json=query_payload)
-
     # Sprawdzenie odpowiedzi dla pierwszego zapytania
     assert (
         response.status_code == 200
@@ -346,13 +347,13 @@ def test_group_by_integers():
     query_payload = {
         "group_columns": ["Shoe Sizes", "Cube Numbers"],
         "select": [
-            {"column": "Age", "function": "Maximum"},
+            {"column": "Age", "function": "Count"},
             {"column": "Digits", "function": "Sum"},
             {"column": "Fibonacci Numbers", "function": "Average"}
         ],
         "table_name": "small_size_some_keys_github_actions",
-    }
-
+    }   
+    
     response = requests.post(API_URL, json=query_payload)
 
     # Sprawdzenie odpowiedzi
