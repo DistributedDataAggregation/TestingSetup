@@ -153,6 +153,25 @@ nulls_dataset_tests = [
             ],
             "table_name": "edge_case_nulls_2"
         }
+    },
+           {
+        "name": "Empty Dataset Handling",
+        "json": {
+            "group_columns": ["Name"],
+            "select": [
+                {"column": "Age", "function": "Average"},
+                {"column": "Age", "function": "Minimum"},
+                {"column": "Age", "function": "Maximum"},
+                {"column": "Age", "function": "Sum"},
+                {"column": "Age", "function": "Count"},
+                {"column": "Salary", "function": "Average"},
+                {"column": "Salary", "function": "Minimum"},
+                {"column": "Salary", "function": "Maximum"},
+                {"column": "Salary", "function": "Sum"},
+                {"column": "Salary", "function": "Count"}
+            ],
+            "table_name": "edge_case_nulls_3"
+        }
     }
 ]
 
@@ -272,23 +291,24 @@ def test_empty_dataset_queries(test):
            assert "value" in result, "'value' missing in one of the results."
 
 # Bug jeszcze nie rozwiazany 
-# @pytest.mark.parametrize("test", nulls_dataset_tests)
-# def test_empty_nulls_edge(test):
-#     """Testuje przypadek pustego datasetu"""
-#     print(f"Running test: {test['name']}")
+@pytest.mark.parametrize("test", nulls_dataset_tests)
+def test_empty_nulls_edge(test):
+    """Testuje przypadek pustego datasetu"""
+    print(f"Running test: {test['name']}")
 
-#     response = requests.post(API_URL, json=test["json"])
-#     assert response.status_code == 200, f"Expected HTTP 200, got {response.status_code}"
-#     response_json = response.json()
-#         # Walidacja wyników
-#     assert "result" in response_json, "Key 'result' missing in response."
-#     assert "values" in response_json["result"], "Key 'values' missing in 'result'."
-#     for value in response_json["result"]["values"]:
-#         assert "grouping_value" in value, "'grouping_value' missing in one of the values."
-#         for result in value["results"]:
-#             assert "value" in result, "'value' missing in one of the results."  
+    response = requests.post(API_URL, json=test["json"])
+    assert response.status_code == 200, f"Expected HTTP 200, got {response.status_code}"
+    response_json = response.json()     
 
-#     print(response_json["result"]["values"])
+    # Walidacja wyników
+    assert "result" in response_json, "Key 'result' missing in response."
+    assert "values" in response_json["result"], "Key 'values' missing in 'result'."
+    for value in response_json["result"]["values"]:
+        assert "grouping_value" in value, "'grouping_value' missing in one of the values."
+        for result in value["results"]:
+            assert "value" in result, "'value' missing in one of the results."  
+
+    print(response_json["result"]["values"])   # Walidacja wyników
 
 #     nie zadziala przez null null 
 #     results_compare(
