@@ -20,7 +20,7 @@ non_existent_column_test = [
     }
 ]
 
-
+@pytest.mark.fail
 @pytest.mark.parametrize("test", non_existent_column_test)
 def test_non_existent_column_queries(test):
     """Testuje zapytanie z kolumną, która nie istnieje"""
@@ -45,6 +45,7 @@ unsupported_data_type_test = [
     }
 ]
 
+@pytest.mark.fail
 @pytest.mark.parametrize("test", unsupported_data_type_test)
 def test_unsupported_data_type_queries(test):
     """Testuje zapytanie z nieobsługiwanym typem danych"""
@@ -69,6 +70,7 @@ invalid_function_test = [
     }
 ]
 
+@pytest.mark.fail
 @pytest.mark.parametrize("test", invalid_function_test)
 def test_invalid_function_queries(test):
     """Testuje zapytanie z nieobsługiwaną funkcją agregującą"""
@@ -88,6 +90,7 @@ empty_query_test = [
     }
 ]
 
+@pytest.mark.fail
 @pytest.mark.parametrize("test", empty_query_test)
 def test_empty_query(test):
     """Testuje zapytanie z pustym JSON"""
@@ -122,6 +125,7 @@ duplicated_columns_test = [
     },
 ]
 
+@pytest.mark.fail
 @pytest.mark.parametrize("test", duplicated_columns_test)
 def test_duplicated_column_query(test):
     """Testuje zapytanie z duplikowanymi kolumnami w JSON"""
@@ -146,6 +150,7 @@ non_existent_table_test = [
     }
 ]
 
+@pytest.mark.fail
 @pytest.mark.parametrize("test", non_existent_table_test)
 def test_non_existent_table_queries(test):
     """Testuje zapytanie z nieistniejącą tabelą"""

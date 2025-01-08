@@ -198,6 +198,7 @@ def test_overflow_queries(test):
         pytest.fail(f"Test failed for query {test['name']}")
 
 
+@pytest.mark.edge
 @pytest.mark.parametrize("test", missing_values_test)
 def test_missing_values_queries(test):
     """Testuje przypadek brakujących wartości"""
@@ -218,10 +219,10 @@ def test_missing_values_queries(test):
     results_compare(
         query_payload=test["json"],
         response_json=response_json,
-        files_path = ["/home/data/missing_values_dataset.parquet"]
+        files_path = ["/home/data/missing_values_dataset/missing_values_dataset.parquet"]
     )
     
-
+@pytest.mark.edge
 @pytest.mark.parametrize("test", long_strings_test)
 def test_long_strings_queries(test):
     """Testuje przypadek długich ciągów znaków"""
@@ -239,7 +240,7 @@ def test_long_strings_queries(test):
         for result in value["results"]:
             assert "value" in result, "'value' missing in one of the results."
 
-
+@pytest.mark.edge
 @pytest.mark.parametrize("test", negative_values_test)
 def test_negative_value_queries(test):
     """Testuje przypadek negatywnych wartosci"""
@@ -257,7 +258,7 @@ def test_negative_value_queries(test):
         for result in value["results"]:
             assert "value" in result, "'value' missing in one of the results."
 
-
+@pytest.mark.edge
 @pytest.mark.parametrize("test", zero_values_test)
 def test_zero_values_queries(test):
     """Testuje przypadek zerowych wartosci"""
@@ -274,7 +275,7 @@ def test_zero_values_queries(test):
         for result in value["results"]:
             assert "value" in result, "'value' missing in one of the results."
 
-
+@pytest.mark.edge
 @pytest.mark.parametrize("test", empty_dataset_test)
 def test_empty_dataset_queries(test):
     """Testuje przypadek pustego datasetu"""
@@ -292,6 +293,7 @@ def test_empty_dataset_queries(test):
            assert "value" in result, "'value' missing in one of the results."
 
 # Bug jeszcze nie rozwiazany 
+@pytest.mark.edge
 @pytest.mark.parametrize("test", nulls_dataset_tests)
 def test_empty_nulls_edge(test):
     """Testuje przypadek pustego datasetu"""
