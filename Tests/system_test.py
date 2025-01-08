@@ -23,49 +23,49 @@ QUERY_PAYLOAD = {
 EXPECTED_RESULT = {
     "result": {
         "values": [
-            {"grouping_value": "1|3", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "2|2", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "3|1", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "4|0", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "1|4", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "4|1", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "2|3", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "3|2", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "5|0", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "5|1", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "1|5", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "2|4", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "4|2", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "3|3", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "99|0", "results": [{"value": 3, "count": 0, "is_null": False}]},
-            {"grouping_value": "99|1", "results": [{"value": 2, "count": 0, "is_null": False}]},
-            {"grouping_value": "5|2", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "1|6", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "4|3", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "3|4", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "2|5", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "6|1", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "5|3", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "4|4", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "2|6", "results": [{"value": 3, "count": 0, "is_null": False}]},
-            {"grouping_value": "3|5", "results": [{"value": 3, "count": 0, "is_null": False}]},
-            {"grouping_value": "99|2", "results": [{"value": 2, "count": 0, "is_null": False}]},
-            {"grouping_value": "5|4", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "4|5", "results": [{"value": 2, "count": 0, "is_null": False}]},
-            {"grouping_value": "3|6", "results": [{"value": 3, "count": 0, "is_null": False}]},
-            {"grouping_value": "99|3", "results": [{"value": 1, "count": 0, "is_null": False}]},
-            {"grouping_value": "5|5", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "4|6", "results": [{"value": 2, "count": 0, "is_null": False}]},
-            {"grouping_value": "1|9", "results": [{"value": 1, "count": 0, "is_null": False}]},
-            {"grouping_value": "1|0", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "5|6", "results": [{"value": 2, "count": 0, "is_null": False}]},
-            {"grouping_value": "1|1", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "2|0", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "5|7", "results": [{"value": 2, "count": 0, "is_null": False}]},
-            {"grouping_value": "1|2", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "2|1", "results": [{"value": 4, "count": 0, "is_null": False}]},
-            {"grouping_value": "5|8", "results": [{"value": 3, "count": 0, "is_null": False}]},
-            {"grouping_value": "3|0", "results": [{"value": 4, "count": 0, "is_null": False}]}
+            {"grouping_value": "1|3", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "3|1", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "4|0", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "2|2", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "1|4", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "4|1", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "2|3", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "3|2", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "5|0", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "5|1", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "1|5", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "2|4", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "4|2", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "3|3", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "99|0", "results":[{"value": 3, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "99|1", "results":[{"value": 2, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "5|2", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "1|6", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "4|3", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "3|4", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "2|5", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "6|1", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "5|3", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "4|4", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "2|6", "results": [{"value": 3, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "3|5", "results": [{"value": 3, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "99|2", "results":[{"value": 2, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "5|4", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "4|5", "results": [{"value": 2, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "3|6", "results": [{"value": 3, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "99|3", "results":[{"value": 1, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "5|5", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "4|6", "results": [{"value": 2, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "1|9", "results": [{"value": 1, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "1|0", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "5|6", "results": [{"value": 2, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "1|1", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "2|0", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "5|7", "results": [{"value": 2, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "1|2", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "2|1", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "5|8", "results": [{"value": 3, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "3|0", "results": [{"value": 4, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]}
         ]
     }
 }
@@ -90,13 +90,13 @@ MULTIPLE_SELECTS_PAYLOAD = {
 MULTIPLE_SELECTS_EXPECTED_RESULT = {
     "result": {
         "values": [
-            {"grouping_value": "2", "results": [{"value": 1, "count": 0, "is_null": False},{"value": 2, "count": 0, "is_null": False}]},
-            {"grouping_value": "3", "results": [{"value": 1, "count": 0, "is_null": False},{"value": 2, "count": 0, "is_null": False}]},
-            {"grouping_value": "4", "results": [{"value": 1, "count": 0, "is_null": False},{"value": 2, "count": 0, "is_null": False}]},
-            {"grouping_value": "5", "results": [{"value": 1, "count": 0, "is_null": False},{"value": 2, "count": 0, "is_null": False}]},
-            {"grouping_value": "99", "results": [{"value": 1, "count": 0, "is_null": False},{"value": 2, "count": 0, "is_null": False}]},
-            {"grouping_value": "6", "results": [{"value": 2, "count": 0, "is_null": False},{"value": 2, "count": 0, "is_null": False}]},
-            {"grouping_value": "1", "results": [{"value": 1, "count": 0, "is_null": False},{"value": 2, "count": 0, "is_null": False}]}
+            {"grouping_value": "2", "results": [{"value": 1, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Minimum' },{"value": 2, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "3", "results": [{"value": 1, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Minimum' },{"value": 2, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "4", "results": [{"value": 1, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Minimum' },{"value": 2, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "5", "results": [{"value": 1, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Minimum' },{"value": 2, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "99", "results": [{"value": 1, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Minimum' },{"value": 2, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "6", "results": [{"value": 2, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Minimum' },{"value": 2, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]},
+            {"grouping_value": "1", "results": [{"value": 1, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Minimum' },{"value": 2, "count": 0, "is_null": False,'result_type': 'INT', 'aggregation': 'Maximum' }]}
         ]
     }
 }
@@ -125,7 +125,9 @@ NULL_GROUPING_EXPECTED_RESULT = {
                     {
                         "value": 9000,
                         "count": 3,
-                        "is_null": False
+                        "is_null": False,
+                        'result_type': 'INT',
+                        'aggregation': 'Average' 
                     }
                 ]
             },
@@ -135,7 +137,9 @@ NULL_GROUPING_EXPECTED_RESULT = {
                     {
                         "value": 90,
                         "count": 3,
-                        "is_null": False
+                        "is_null": False,
+                        'result_type': 'INT',
+                        'aggregation': 'Average' 
                     }
                 ]
             },
@@ -145,7 +149,9 @@ NULL_GROUPING_EXPECTED_RESULT = {
                     {
                         "value": 3000,
                         "count": 3,
-                        "is_null": False
+                        "is_null": False,
+                        'result_type': 'INT',
+                        'aggregation': 'Average' 
                     }
                 ]
             },
@@ -155,7 +161,9 @@ NULL_GROUPING_EXPECTED_RESULT = {
                     {
                         "value": 33000,
                         "count": 6,
-                        "is_null": False
+                        "is_null": False,
+                        'result_type': 'INT',
+                        'aggregation': 'Average' 
                     }
                 ]
             },
@@ -165,7 +173,9 @@ NULL_GROUPING_EXPECTED_RESULT = {
                     {
                         "value": 6666,
                         "count": 3,
-                        "is_null": False
+                        "is_null": False,
+                        'result_type': 'INT',
+                        'aggregation': 'Average' 
                     }
                 ]
             }
@@ -184,11 +194,15 @@ NULL_SELECT_PAYLOAD = {
     },
    {
       "column": "Age",
-      "function": "Minimum"
-    },
-   {
-      "column": "Age",
       "function": "Maximum"
+    },
+    {
+      "column": "Age",
+      "function": "Sum"
+    },
+    {
+      "column": "Age",
+      "function": "Count"
     }
   ],
   "table_name": "data_null"
@@ -199,42 +213,60 @@ NULL_SELECT_EXPECTED_RESULT = {
         "error": None,
         "values": [
             {
-                "grouping_value": "Manager",
+                "grouping_value": "null",
                 "results": [
                     {
-                        "value": 0,
                         "count": 0,
-                        "is_null": True
+                        "is_null": True,
+                        "result_type": "UNKNOWN",
+                        "aggregation": "Average"
                     },
                     {
-                        "value": 0,
                         "count": 0,
-                        "is_null": True
+                        "is_null": True,
+                        "result_type": "UNKNOWN",
+                        "aggregation": "Maximum"
                     },
                     {
-                        "value": 0,
                         "count": 0,
-                        "is_null": True
+                        "is_null": True,
+                        "result_type": "UNKNOWN",
+                        "aggregation": "Sum"
+                    },
+                    {
+                        "count": 0,
+                        "is_null": True,
+                        "result_type": "UNKNOWN",
+                        "aggregation": "Count"
                     }
                 ]
             },
             {
-                "grouping_value": "null",
+                "grouping_value": "Manager",
                 "results": [
                     {
-                        "value": 0,
                         "count": 0,
-                        "is_null": True
+                        "is_null": True,
+                        "result_type": "UNKNOWN",
+                        "aggregation": "Average"
                     },
                     {
-                        "value": 0,
                         "count": 0,
-                        "is_null": True
+                        "is_null": True,
+                        "result_type": "UNKNOWN",
+                        "aggregation": "Maximum"
                     },
                     {
-                        "value": 0,
                         "count": 0,
-                        "is_null": True
+                        "is_null": True,
+                        "result_type": "UNKNOWN",
+                        "aggregation": "Sum"
+                    },
+                    {
+                        "count": 0,
+                        "is_null": True,
+                        "result_type": "UNKNOWN",
+                        "aggregation": "Count"
                     }
                 ]
             },
@@ -242,19 +274,28 @@ NULL_SELECT_EXPECTED_RESULT = {
                 "grouping_value": "Developer",
                 "results": [
                     {
-                        "value": 0,
                         "count": 0,
-                        "is_null": True
+                        "is_null": True,
+                        "result_type": "UNKNOWN",
+                        "aggregation": "Average"
                     },
                     {
-                        "value": 0,
                         "count": 0,
-                        "is_null": True
+                        "is_null": True,
+                        "result_type": "UNKNOWN",
+                        "aggregation": "Maximum"
                     },
                     {
-                        "value": 0,
                         "count": 0,
-                        "is_null": True
+                        "is_null": True,
+                        "result_type": "UNKNOWN",
+                        "aggregation": "Sum"
+                    },
+                    {
+                        "count": 0,
+                        "is_null": True,
+                        "result_type": "UNKNOWN",
+                        "aggregation": "Count"
                     }
                 ]
             },
@@ -262,19 +303,28 @@ NULL_SELECT_EXPECTED_RESULT = {
                 "grouping_value": "CEO",
                 "results": [
                     {
-                        "value": 0,
                         "count": 0,
-                        "is_null": True
+                        "is_null": True,
+                        "result_type": "UNKNOWN",
+                        "aggregation": "Average"
                     },
                     {
-                        "value": 0,
                         "count": 0,
-                        "is_null": True
+                        "is_null": True,
+                        "result_type": "UNKNOWN",
+                        "aggregation": "Maximum"
                     },
                     {
-                        "value": 0,
                         "count": 0,
-                        "is_null": True
+                        "is_null": True,
+                        "result_type": "UNKNOWN",
+                        "aggregation": "Sum"
+                    },
+                    {
+                        "count": 0,
+                        "is_null": True,
+                        "result_type": "UNKNOWN",
+                        "aggregation": "Count"
                     }
                 ]
             },
@@ -282,26 +332,34 @@ NULL_SELECT_EXPECTED_RESULT = {
                 "grouping_value": "Designer",
                 "results": [
                     {
-                        "value": 0,
                         "count": 0,
-                        "is_null": True
+                        "is_null": True,
+                        "result_type": "UNKNOWN",
+                        "aggregation": "Average"
                     },
                     {
-                        "value": 0,
                         "count": 0,
-                        "is_null": True
+                        "is_null": True,
+                        "result_type": "UNKNOWN",
+                        "aggregation": "Maximum"
                     },
                     {
-                        "value": 0,
                         "count": 0,
-                        "is_null": True
+                        "is_null": True,
+                        "result_type": "UNKNOWN",
+                        "aggregation": "Sum"
+                    },
+                    {
+                        "count": 0,
+                        "is_null": True,
+                        "result_type": "UNKNOWN",
+                        "aggregation": "Count"
                     }
                 ]
             }
         ]
     },
 }
-
 
 @pytest.mark.system
 def test_query_response_multiple_group_columns():
@@ -337,6 +395,7 @@ def check_response(response, expected_result):
     """Wspólna funkcja do sprawdzania odpowiedzi."""
     assert response.status_code == 200, f"Expected HTTP 200, got {response.status_code}"
     response_json = response.json()
+    print(response_json["result"]["values"] )
 
     for expected_group in expected_result["result"]["values"]:
         grouping_value = expected_group["grouping_value"]
