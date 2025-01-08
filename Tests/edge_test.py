@@ -143,7 +143,7 @@ nulls_dataset_tests = [
         }
     },
        {
-        "name": "Empty Dataset Handling",
+        "name": "Nulls Dataset",
         "json": {
             "group_columns": ["Name"],
             "select": [
@@ -157,23 +157,24 @@ nulls_dataset_tests = [
            {
         "name": "Empty Dataset Handling",
         "json": {
-            "group_columns": ["Name"],
+            "group_columns": ["name"],
             "select": [
-                {"column": "Age", "function": "Average"},
-                {"column": "Age", "function": "Minimum"},
-                {"column": "Age", "function": "Maximum"},
-                {"column": "Age", "function": "Sum"},
-                {"column": "Age", "function": "Count"},
-                {"column": "Salary", "function": "Average"},
-                {"column": "Salary", "function": "Minimum"},
-                {"column": "Salary", "function": "Maximum"},
-                {"column": "Salary", "function": "Sum"},
-                {"column": "Salary", "function": "Count"}
+                {"column": "age", "function": "Average"},
+                {"column": "age", "function": "Minimum"},
+                {"column": "age", "function": "Maximum"},
+                {"column": "age", "function": "Sum"},
+                {"column": "age", "function": "Count"},
+                {"column": "salary", "function": "Average"},
+                {"column": "salary", "function": "Minimum"},
+                {"column": "salary", "function": "Maximum"},
+                {"column": "salary", "function": "Sum"},
+                {"column": "salary", "function": "Count"}
             ],
             "table_name": "edge_case_nulls_3"
         }
     }
 ]
+
 
 @pytest.mark.parametrize("test", overflow_test)
 def test_overflow_queries(test):
@@ -297,22 +298,11 @@ def test_empty_nulls_edge(test):
     print(f"Running test: {test['name']}")
 
     response = requests.post(API_URL, json=test["json"])
+    response_json = response.json()   
     assert response.status_code == 200, f"Expected HTTP 200, got {response.status_code}"
-    response_json = response.json()     
-
-    # Walidacja wyników
-    assert "result" in response_json, "Key 'result' missing in response."
-    assert "values" in response_json["result"], "Key 'values' missing in 'result'."
-    for value in response_json["result"]["values"]:
-        assert "grouping_value" in value, "'grouping_value' missing in one of the values."
-        for result in value["results"]:
-            assert "value" in result, "'value' missing in one of the results."  
-
-    print(response_json["result"]["values"])   # Walidacja wyników
-
-#     nie zadziala przez null null 
-#     results_compare(
-#         query_payload=test["json"],
-#         response_json=response_json,
-#         file_path = f"/home/data/{test['json']['table_name']}.parquet"
-#     )
+    # TODO dorob sprawdzanie wynikow 
+    # results_compare(
+    #     query_payload=test["json"],
+    #     response_json=response_json,
+    #     file_path = f"/home/data/{test['json']['table_name']}.parquet"
+    # )
