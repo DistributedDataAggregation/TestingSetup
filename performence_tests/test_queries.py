@@ -92,16 +92,17 @@ tests= [
                         "Shoe Sizes", "Flowers", "Zodiac Signs", "Types of Fruits", "Web Browsers", "Cat Breeds", "Computer Brands", "Senses", "Letters", "Animals"
                     ],
                     "select": [
-                        {"column": "Age", "function": "Maximum"},
                         {"column": "Fibonacci Numbers", "function": "Average"},
                         {"column": "Cube Numbers", "function": "Maximum"},
                         {"column": "Odd Numbers", "function": "Average"},
                         {"column": "Prime Numbers", "function": "Minimum"},
-                        {"column": "Shoe Sizes", "function": "Maximum"},
                         {"column": "Digits", "function": "Average"},
                         {"column": "Kraje", "function": "Average"},
                         {"column": "Negative Numbers", "function": "Average"},
-                        {"column": "Prime Numbers", "function": "Average"}
+                        {"column": "Prime Numbers", "function": "Average"},
+                        {"column": "Kraje", "function": "Count"},
+                        {"column": "Negative Numbers", "function": "Sum"},
+                        {"column": "Prime Numbers", "function": "Sum"}
                     ],
                     "table_name": "small_size_some_keys_github_actions"
                 }
@@ -111,11 +112,10 @@ tests= [
                 "json": {
                     "group_columns": [
                         "Surname", "Age", "Colors", "Sports", "Eye Colors", "Tree Names", "Company Departments", "Car Brands", "Rainbow Colors", "Days of the Month", 
-                        "Shoe Sizes", "Flowers", "Zodiac Signs", "Types of Fruits", "Web Browsers", "Cat Breeds", "Computer Brands", "Senses", "Letters", "Animals",
-                        "Body Parts", "Mountains", "Grades", "Roles", "Logical Operators", "Payment Methods", "Vegetables", "Animals", "Prime Numbers", "Cube Numbers"
+                         "Flowers", "Zodiac Signs", "Types of Fruits", "Web Browsers", "Cat Breeds", "Computer Brands", "Senses", "Letters", "Animals",
+                        "Body Parts", "Mountains", "Grades", "Roles", "Logical Operators", "Payment Methods", "Vegetables",
                     ],
                     "select": [
-                        {"column": "Age", "function": "Maximum"},
                         {"column": "Fibonacci Numbers", "function": "Average"},
                         {"column": "Cube Numbers", "function": "Maximum"},
                         {"column": "Odd Numbers", "function": "Average"},
@@ -124,6 +124,10 @@ tests= [
                         {"column": "Digits", "function": "Average"},
                         {"column": "Kraje", "function": "Average"},
                         {"column": "Negative Numbers", "function": "Average"},
+                        {"column": "Prime Numbers", "function": "Average"},
+                        {"column": "Digits", "function": "Count"},
+                        {"column": "Kraje", "function": "Sum"},
+                        {"column": "Negative Numbers", "function": "Sum"},
                         {"column": "Prime Numbers", "function": "Average"}
                     ],
                     "table_name": "small_size_some_keys_github_actions"
@@ -166,7 +170,7 @@ tests= [
                 }
             },
             {
-                "name": "Medium",
+                "name": "Medium Query 1",
                 "json": {
                     "group_columns": ["Position"],
                     "select": [
@@ -177,7 +181,7 @@ tests= [
                 }
             },
             {
-                "name": "Parallel query 5",
+                "name": "Medium Query 2",
                 "json": {
                     "group_columns": ["Position"],
                     "select": [
@@ -187,7 +191,7 @@ tests= [
                 }
             },
             {
-                "name": "Medium query 1",
+                "name": "Medium query 3",
                 "json": {
                     "group_columns": ["Position", "Surname"],
                     "select": [
@@ -199,13 +203,15 @@ tests= [
                 }
             },
             {
-                "name": "Complex query 2",
+                "name": "Complex query 1",
                 "json": {
                     "group_columns": ["Position", "Age", "Surname"],
                     "select": [
                         {"column": "Salary", "function": "Maximum"},
                         {"column": "Salary", "function": "Minimum"},
-                        {"column": "Salary", "function": "Average"}
+                        {"column": "Salary", "function": "Average"},
+                        {"column": "Salary", "function": "Count"},
+                        {"column": "Salary", "function": "Sum"}
                     ],
                     "table_name": "medium_size_few_keys_karol"
                 }
@@ -259,7 +265,7 @@ tests= [
             {
                 "name": "Medium query 2",
                 "json": {
-                    "group_columns": ["RandomGIGA", "RandomMedium"],
+                    "group_columns": ["Random", "RandomMedium"],
                     "select": [
                         {"column": "Digits", "function": "Average"},
                         {"column": "Kraje", "function": "Maximum"}
@@ -270,7 +276,7 @@ tests= [
             {
                 "name": "Medium query 3",
                 "json": {
-                    "group_columns": ["Kraje", "Surname"],
+                    "group_columns": ["Random", "Surname"],
                     "select": [
                         {"column": "Age", "function": "Average"},
                         {"column": "Digits", "function": "Maximum"}
@@ -281,11 +287,12 @@ tests= [
             {
                 "name": "Complex query 1",
                 "json": {
-                    "group_columns": ["Countries", "Surname", "Random"],
+                    "group_columns": ["Surname", "Digits", "RandomMedium"],
                     "select": [
                         {"column": "Age", "function": "Maximum"},
-                        {"column": "Digits", "function": "Average"},
-                        {"column": "Kraje", "function": "Maximum"}
+                        {"column": "Kraje", "function": "Maximum"},
+                        {"column": "Age", "function": "Count"},
+                        {"column": "Age", "function": "Sum"},
                     ],
                     "table_name": "medium_size_many_keys"
                 }
@@ -309,6 +316,9 @@ tests= [
                     "select": [
                         {"column": "Age", "function": "Maximum"},
                         {"column": "Digits", "function": "Average"},
+                        {"column": "Kraje", "function": "Average"},
+                        {"column": "Age", "function": "Count"},
+                        {"column": "Digits", "function": "Sum"},
                         {"column": "Kraje", "function": "Average"}
                     ],
                     "table_name": "medium_size_many_keys"

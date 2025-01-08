@@ -395,8 +395,6 @@ def check_response(response, expected_result):
     """Wspólna funkcja do sprawdzania odpowiedzi."""
     assert response.status_code == 200, f"Expected HTTP 200, got {response.status_code}"
     response_json = response.json()
-    print(response_json["result"]["values"] )
-
     for expected_group in expected_result["result"]["values"]:
         grouping_value = expected_group["grouping_value"]
         expected_results = expected_group["results"]
