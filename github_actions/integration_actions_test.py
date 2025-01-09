@@ -231,9 +231,9 @@ def test_splitting_files_to_nodes():
 
 
     results_compare(query_payload=query_payload,response_json=response_json,files_path=[
-        "./data/float_3_files_test1.parquet",
-        "./data/float_3_files_test2.parquet",
-        "./data/float_3_files_test3.parquet"
+        "./data/float_3_files_test/float_3_files_test1.parquet",
+        "./data/float_3_files_test/float_3_files_test2.parquet",
+        "./data/float_3_files_test/float_3_files_test3.parquet"
     ])
 
 @pytest.mark.integration

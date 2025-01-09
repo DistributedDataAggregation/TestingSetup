@@ -7,6 +7,7 @@ def results_compare(query_payload, response_json, files_path=None):
     if not files_path:
         current_dir = os.path.dirname(os.path.abspath(__file__))
         data_dir = os.path.join(current_dir, "data")
+        data_dir = os.path.join(data_dir, "small_size_some_keys_github_actions")
         file_path = os.path.join(data_dir, "small_size_some_keys_github_actions.parquet")
         files_path = [file_path]
     
