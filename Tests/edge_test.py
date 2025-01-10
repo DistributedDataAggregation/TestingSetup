@@ -157,13 +157,18 @@ nulls_dataset_tests = [
            {
         "name": "Empty Dataset Handling",
         "json": {
-            "group_columns": ["Name"],
+            "group_columns": ["name"],
             "select": [
-                {"column": "Age", "function": "Average"},
-                {"column": "Age", "function": "Minimum"},
-                {"column": "Age", "function": "Maximum"},
-                {"column": "Age", "function": "Sum"},
-                {"column": "Age", "function": "Count"},
+                {"column": "age", "function": "Average"},
+                {"column": "age", "function": "Minimum"},
+                {"column": "age", "function": "Maximum"},
+                {"column": "age", "function": "Sum"},
+                {"column": "age", "function": "Count"},
+                {"column": "salary", "function": "Average"},
+                {"column": "salary", "function": "Minimum"},
+                {"column": "salary", "function": "Maximum"},
+                {"column": "salary", "function": "Sum"},
+                {"column": "salary", "function": "Count"}
             ],
             "table_name": "edge_case_nulls_3"
         }
