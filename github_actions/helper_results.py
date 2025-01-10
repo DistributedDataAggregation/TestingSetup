@@ -84,9 +84,9 @@ def compare_results(pandas_result, api_result, select):
                 elif result_type == "FLOAT":
                     value_string = "float_value"
 
-            if function_name == "Average" and res["count"] > 0:
+            if function_name == "Average":
                 # Calculate and round to 5 decimal points
-                avg_value = res[value_string] / res["count"]
+                avg_value = res[value_string]
                 result_values[f"{column_name}_{function_name}"] = round(avg_value, 6)
             else:
                 result_values[f"{column_name}_{function_name}"] = res[value_string]

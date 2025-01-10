@@ -34,7 +34,7 @@ def test_response_format_actions():
         ), "'grouping_value' missing in one of the values."
         assert "results" in value, "'results' missing in one of the values."
         for result in value["results"]:
-            assert "value" in result, "'value' missing in one of the results."
+            assert ("value" in result) or ("double_value" in result), "'value' or 'double_value' missing in one of the results."
 
     # Sprawdzenie wynikow 
     results_compare(query_payload=query_payload,response_json=response_json)
@@ -222,11 +222,13 @@ def test_splitting_files_to_nodes():
     }
 
     response = requests.post(API_URL, json=query_payload)
+    
     # Sprawdzenie odpowiedzi dla pierwszego zapytania
+    response_json = response.json()
     assert (
         response.status_code == 200
     ), f"Expected HTTP 200 for query 1, got {response.status_code}"
-    response_json = response.json()
+    print(response_json)
     assert "result" in response_json, "Key 'result' missing in response for query."
 
 
@@ -335,7 +337,7 @@ def test_group_by_mixed_types():
         ), "'grouping_value' missing in one of the values."
         assert "results" in value, "'results' missing in one of the values."
         for result in value["results"]:
-            assert "value" in result, "'value' missing in one of the results."
+            assert ("value" in result) or ('double_value' in result), "'value' or 'double_value' missing in one of the results."
 
     results_compare(query_payload=query_payload, response_json=response_json)
 
@@ -371,6 +373,6 @@ def test_group_by_integers():
         ), "'grouping_value' missing in one of the values."
         assert "results" in value, "'results' missing in one of the values."
         for result in value["results"]:
-            assert "value" in result, "'value' missing in one of the results."
+            assert ("value" in result) or ('double_value' in result), "'value' or 'double_value' missing in one of the results."
 
     results_compare(query_payload=query_payload, response_json=response_json)

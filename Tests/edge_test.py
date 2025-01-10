@@ -190,9 +190,9 @@ def test_overflow_queries(test):
         for value in response_json["result"]["values"]:
             assert "grouping_value" in value, "'grouping_value' missing in one of the values."
             for result in value["results"]:
-                assert "value" in result, "'value' missing in one of the results."
-                if result["value"] < 0:
-                    print(f"WARNING: Possible overflow detected! Grouping value: {value['grouping_value']}, Value: {result['value']}")
+                assert "double_value" in result, "'double_value' missing in one of the results."
+                if result["double_value"] < 0:
+                    print(f"WARNING: Possible overflow detected! Grouping value: {value['grouping_value']}, Value: {result['double_value']}")
     except Exception as e:
         print(f"FAILED: {test['name']} - {e}")
         pytest.fail(f"Test failed for query {test['name']}")
@@ -214,7 +214,7 @@ def test_missing_values_queries(test):
     for value in response_json["result"]["values"]:
         assert "grouping_value" in value, "'grouping_value' missing in one of the values."
         for result in value["results"]:
-            assert "value" in result, "'value' missing in one of the results."
+            assert "double_value" in result, "'double_value' missing in one of the results."
 
     results_compare(
         query_payload=test["json"],
@@ -256,7 +256,7 @@ def test_negative_value_queries(test):
     for value in response_json["result"]["values"]:
         assert "grouping_value" in value, "'grouping_value' missing in one of the values."
         for result in value["results"]:
-            assert "value" in result, "'value' missing in one of the results."
+             assert "value" in result or "double_value" in result, "'double_value' or 'value' missing in one of the results."
 
 @pytest.mark.edge
 @pytest.mark.parametrize("test", zero_values_test)
@@ -273,7 +273,7 @@ def test_zero_values_queries(test):
     for value in response_json["result"]["values"]:
         assert "grouping_value" in value, "'grouping_value' missing in one of the values."
         for result in value["results"]:
-            assert "value" in result, "'value' missing in one of the results."
+            assert "value" in result or "double_value" in result, "'double_value' or 'value' missing in one of the results."
 
 @pytest.mark.edge
 @pytest.mark.parametrize("test", empty_dataset_test)
@@ -290,7 +290,7 @@ def test_empty_dataset_queries(test):
     for value in response_json["result"]["values"]:
         assert "grouping_value" in value, "'grouping_value' missing in one of the values."
         for result in value["results"]:
-           assert "value" in result, "'value' missing in one of the results."
+           assert "double_value" in result, "'double_value' missing in one of the results."
 
 # Bug jeszcze nie rozwiazany 
 @pytest.mark.edge
@@ -300,7 +300,9 @@ def test_empty_nulls_edge(test):
     print(f"Running test: {test['name']}")
 
     response = requests.post(API_URL, json=test["json"])
+    print(test["json"])
     response_json = response.json()   
+    print(response_json)
     assert response.status_code == 200, f"Expected HTTP 200, got {response.status_code}"
     # TODO dorob sprawdzanie wynikow 
     # results_compare(
