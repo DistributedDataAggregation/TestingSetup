@@ -9,7 +9,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from config import API_URL
 
 
-NUMBER_OF_REPETITIONS = 5
+NUMBER_OF_REPETITIONS = 10
 ENABLE_AVERAGE_TEST = False
 
 results = []
@@ -24,13 +24,15 @@ def test_performance_one(test):
         try:
             print(f"Test name: {query['name']}")
             response = requests.post(API_URL, json=query["json"])
-            assert response.status_code == 200, f"Expected HTTP 200, got {response.status_code}"
             response_json = response.json()
+            assert response.status_code == 200, f"Expected HTTP 200, got {response.status_code}"
+            
             
             response_time = response.elapsed.total_seconds()
             response_time_from_response = float(response_json["processing_time"]) / 1000
             results.append((query["name"], response_time, response_time_from_response))
 
+                
             # Sprawdzenie struktury odpowiedzi
             assert "result" in response_json, "Key 'result' missing in response."
             assert "values" in response_json["result"], "Key 'values' missing in 'result'."
@@ -39,12 +41,20 @@ def test_performance_one(test):
                     "grouping_value" in value
                 ), "'grouping_value' missing in one of the values."
                 assert "results" in value, "'results' missing in one of the values."
+
                 for result in value["results"]:
-                    assert "value" in result, "'value' missing in one of the results."
+                    if result['result_type'] == 'DOUBLE':
+                        assert "double_value" in result, "double_value missing in one of the results. "
+                    elif result['result_type'] == 'FLOAT':
+                        assert "float_value" in result, "float_value missing in one of the results."
+                    elif result['result_type'] == 'INT':
+                        assert "value" in result, "int_value missing in one of the results."
+
 
             print("PASSED")
         except Exception as e:
             print(f"FAILED: {query['name']} - {e}")
+            print(response_json)
             continue
 
     print("\n")
@@ -71,21 +81,33 @@ def test_performance_average(test):
         processing_times = []
 
         for _ in range(NUMBER_OF_REPETITIONS):
-            response = requests.post(API_URL, json=query["json"])
-            assert response.status_code == 200, f"Expected HTTP 200, got {response.status_code}"
-            response_json = response.json()
+            try:
+                response = requests.post(API_URL, json=query["json"])
+                response_json = response.json()
+                assert response.status_code == 200, f"Expected HTTP 200, got {response.status_code}"
+             
 
-            response_times.append(response.elapsed.total_seconds())
-            processing_times.append(float(response_json["processing_time"]) / 1000)
+                response_times.append(response.elapsed.total_seconds())
+                processing_times.append(float(response_json["processing_time"]) / 1000)
 
-            # Sprawdzenie struktury odpowiedzi
-            assert "result" in response_json, "Key 'result' missing in response."
-            assert "values" in response_json["result"], "Key 'values' missing in 'result'."
-            for value in response_json["result"]["values"]:
-                assert "grouping_value" in value, "'grouping_value' missing in one of the values."
-                assert "results" in value, "'results' missing in one of the values."
-                for result in value["results"]:
-                    assert "value" in result, "'value' missing in one of the results."
+                # Sprawdzenie struktury odpowiedzi
+                assert "result" in response_json, "Key 'result' missing in response."
+                assert "values" in response_json["result"], "Key 'values' missing in 'result'."
+                for value in response_json["result"]["values"]:
+                    assert "grouping_value" in value, "'grouping_value' missing in one of the values."
+                    assert "results" in value, "'results' missing in one of the values."
+
+                    for result in value["results"]:
+                            if result['result_type'] == 'DOUBLE':
+                                assert "double_value" in result, "double_value missing in one of the results. "
+                            elif result['result_type'] == 'FLOAT':
+                                assert "float_value" in result, "float_value missing in one of the results."
+                            elif result['result_type'] == 'INT':
+                                assert "value" in result, "int_value missing in one of the results."
+            except Exception as e:
+             print(f"FAILED: {query['name']} - {e}")
+             print(response_json['result']['error'])
+            continue
 
         avg_response_time = sum(response_times) / NUMBER_OF_REPETITIONS
         avg_processing_time = sum(processing_times) / NUMBER_OF_REPETITIONS
