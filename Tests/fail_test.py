@@ -50,9 +50,9 @@ def test_unsupported_data_type_queries(test):
     """Testuje zapytanie z nieobsługiwanym typem danych"""
     print(f"Running test: {test['name']}")
     response = requests.post(API_URL, json=test["json"])
-    # TODO put actual error message instead of placeholder and 500 instead of 200 when error reporting from threads is fixed
-    assert response.status_code == 200, f"Expected HTTP 500, got {response.status_code}"
-    # assert compare(response.text, 'error'), f"Expected 'error', got {response.text}"
+    assert response.status_code == 500, f"Expected HTTP 500, got {response.status_code}"
+    assert compare(response.text, 'Unsupported data type for aggregation. Only integer, float and double types are allowed'), \
+        f"Expected 'Unsupported data type for aggregation. Only integer, float and double types are allowed', got {response.text}"
 
 
 
