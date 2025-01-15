@@ -33,7 +33,7 @@ def test_response_format():
         assert "grouping_value" in value, "'grouping_value' missing in one of the values."
         assert "results" in value, "'results' missing in one of the values."
         for result in value["results"]:
-            assert "value" in result, "'value' missing in one of the results."
+            assert "int_value" in result, "'int_value' missing in one of the results."
 
 @pytest.mark.integration
 def test_response_multiple_selects():
@@ -66,7 +66,7 @@ def test_response_multiple_selects():
         assert "grouping_value" in value, "'grouping_value' missing in one of the values."
         assert "results" in value, "'results' missing in one of the values."
         for result in value["results"]:
-            assert "value" in result, "'value' missing in one of the results."
+            assert "int_value" in result, "'int_value' missing in one of the results."
 
 @pytest.mark.integration
 def test_response_multiple_groups():
@@ -99,7 +99,7 @@ def test_response_multiple_groups():
         assert "grouping_value" in value, "'grouping_value' missing in one of the values."
         assert "results" in value, "'results' missing in one of the values."
         for result in value["results"]:
-            assert "value" in result, "'value' missing in one of the results."
+            assert "int_value" in result, "'int_value' missing in one of the results."
 
 @pytest.mark.integration
 def test_parallel_requests():
