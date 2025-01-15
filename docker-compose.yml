@@ -74,7 +74,17 @@ services:
       environment:
         - MAIN_EXECUTOR_IDX=2
       volumes:
-        - /home/data:/home/data                  
+        - /home/data:/home/data 
+
+  react-frontend:
+    image: front-image
+    ports:
+      - "4000:80" 
+    networks:
+      app_net:
+        ipv4_address: 172.20.0.15
+    env_file:
+        - .env                   
 
 networks:
   app_net:
