@@ -48,7 +48,7 @@ def test_performance_one(test):
                     elif result['result_type'] == 'FLOAT':
                         assert "float_value" in result, "float_value missing in one of the results."
                     elif result['result_type'] == 'INT':
-                        assert "value" in result, "int_value missing in one of the results."
+                        assert "int_value" in result, "int_value missing in one of the results."
 
 
             print("PASSED")
@@ -103,7 +103,7 @@ def test_performance_average(test):
                             elif result['result_type'] == 'FLOAT':
                                 assert "float_value" in result, "float_value missing in one of the results."
                             elif result['result_type'] == 'INT':
-                                assert "value" in result, "int_value missing in one of the results."
+                                assert "int_value" in result, "int_value missing in one of the results."
             except Exception as e:
              print(f"FAILED: {query['name']} - {e}")
              print(response_json['result']['error'])

@@ -1,3 +1,4 @@
+import string
 import pytest
 import requests
 import sys
@@ -238,7 +239,7 @@ def test_long_strings_queries(test):
     for value in response_json["result"]["values"]:
         assert "grouping_value" in value, "'grouping_value' missing in one of the values."
         for result in value["results"]:
-            assert "value" in result, "'value' missing in one of the results."
+            assert "int_value" in result, "'int_value' missing in one of the results."
 
 @pytest.mark.edge
 @pytest.mark.parametrize("test", negative_values_test)
@@ -256,7 +257,7 @@ def test_negative_value_queries(test):
     for value in response_json["result"]["values"]:
         assert "grouping_value" in value, "'grouping_value' missing in one of the values."
         for result in value["results"]:
-             assert "value" in result or "double_value" in result, "'double_value' or 'value' missing in one of the results."
+             assert "int_value" in result or "double_value" in result, "'double_value' or 'int_value' missing in one of the results."
 
 @pytest.mark.edge
 @pytest.mark.parametrize("test", zero_values_test)
@@ -273,7 +274,7 @@ def test_zero_values_queries(test):
     for value in response_json["result"]["values"]:
         assert "grouping_value" in value, "'grouping_value' missing in one of the values."
         for result in value["results"]:
-            assert "value" in result or "double_value" in result, "'double_value' or 'value' missing in one of the results."
+            assert "int_value" in result or "double_value" in result, "'double_value' or 'int_value' missing in one of the results."
 
 @pytest.mark.edge
 @pytest.mark.parametrize("test", empty_dataset_test)
@@ -282,15 +283,8 @@ def test_empty_dataset_queries(test):
     print(f"Running test: {test['name']}")
 
     response = requests.post(API_URL, json=test["json"])
-    assert response.status_code == 500, f"Expected HTTP 200, got {response.status_code}"
-    response_json = response.json()
-    # Walidacja wyników
-    assert "result" in response_json, "Key 'result' missing in response."
-    assert "values" in response_json["result"], "Key 'values' missing in 'result'."
-    for value in response_json["result"]["values"]:
-        assert "grouping_value" in value, "'grouping_value' missing in one of the values."
-        for result in value["results"]:
-           assert "double_value" in result, "'double_value' missing in one of the results."
+    assert response.status_code == 500, f"Expected HTTP 500, got {response.status_code}"
+    assert compare(response.text, 'Failed to get columns data types'), f"Expected 'Failed to get columns data types', got {response.text}"
 
 # Bug jeszcze nie rozwiazany 
 @pytest.mark.edge
@@ -310,3 +304,7 @@ def test_empty_nulls_edge(test):
     #     response_json=response_json,
     #     file_path = f"/home/data/{test['json']['table_name']}.parquet"
     # )
+
+
+def compare(a, b):
+    return [c for c in a if c.isalpha()] == [c for c in b if c.isalpha()]

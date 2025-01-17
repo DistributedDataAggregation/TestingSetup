@@ -72,13 +72,13 @@ def compare_results(pandas_result, api_result, select):
             column_name = select[idx]["column"]
             function_name = select[idx]["function"]
 
-            value_string = "value"  
+            value_string = "int_value"  
 
             if "result_type" in res:
                 result_type = res["result_type"]
 
                 if result_type == "INT":
-                    value_string = "value"
+                    value_string = "int_value"
                 elif result_type == "DOUBLE":
                     value_string = "double_value"
                 elif result_type == "FLOAT":

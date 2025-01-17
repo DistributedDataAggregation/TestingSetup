@@ -34,7 +34,7 @@ def test_response_format_actions():
         ), "'grouping_value' missing in one of the values."
         assert "results" in value, "'results' missing in one of the values."
         for result in value["results"]:
-            assert ("value" in result) or ("double_value" in result), "'value' or 'double_value' missing in one of the results."
+            assert ("int_value" in result) or ("double_value" in result), "'value' or 'double_value' missing in one of the results."
 
     # Sprawdzenie wynikow 
     results_compare(query_payload=query_payload,response_json=response_json)
@@ -44,14 +44,14 @@ def test_response_format_actions():
         results = group["results"]
 
         if grouping_value == "Kulik":
-            assert results[0]["value"] == 77
-            assert results[1]["value"] == -1
+            assert results[0]["int_value"] == 77
+            assert results[1]["int_value"] == -1
         elif grouping_value == "Kabatka":
-            assert results[0]["value"] == 84
-            assert results[1]["value"] == -4
+            assert results[0]["int_value"] == 84
+            assert results[1]["int_value"] == -4
         elif grouping_value == "Krol":
-            assert results[0]["value"] == 86
-            assert results[1]["value"] == -2
+            assert results[0]["int_value"] == 86
+            assert results[1]["int_value"] == -2
 
     
 @pytest.mark.integration
@@ -79,7 +79,7 @@ def test_response_multiple_selects_actions():
         ), "'grouping_value' missing in one of the values."
         assert "results" in value, "'results' missing in one of the values."
         for result in value["results"]:
-            assert "value" in result, "'value' missing in one of the results."
+            assert "int_value" in result, "'int_value' missing in one of the results."
 
     results_compare(query_payload=query_payload,response_json=response_json)
 
@@ -108,7 +108,7 @@ def test_response_multiple_groups_actions():
         ), "'grouping_value' missing in one of the values."
         assert "results" in value, "'results' missing in one of the values."
         for result in value["results"]:
-            assert "value" in result, "'value' missing in one of the results."
+            assert "int_value" in result, "'int_value' missing in one of the results."
 
     results_compare(query_payload=query_payload,response_json=response_json)
 
@@ -337,7 +337,7 @@ def test_group_by_mixed_types():
         ), "'grouping_value' missing in one of the values."
         assert "results" in value, "'results' missing in one of the values."
         for result in value["results"]:
-            assert ("value" in result) or ('double_value' in result), "'value' or 'double_value' missing in one of the results."
+            assert ("int_value" in result) or ('double_value' in result), "'int_value' or 'double_value' missing in one of the results."
 
     results_compare(query_payload=query_payload, response_json=response_json)
 
@@ -373,6 +373,6 @@ def test_group_by_integers():
         ), "'grouping_value' missing in one of the values."
         assert "results" in value, "'results' missing in one of the values."
         for result in value["results"]:
-            assert ("value" in result) or ('double_value' in result), "'value' or 'double_value' missing in one of the results."
+            assert ("int_value" in result) or ('double_value' in result), "'int_value' or 'double_value' missing in one of the results."
 
     results_compare(query_payload=query_payload, response_json=response_json)

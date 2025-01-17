@@ -26,10 +26,9 @@ def test_non_existent_column_queries(test):
     """Testuje zapytanie z kolumną, która nie istnieje"""
     print(f"Running test: {test['name']}")
     response = requests.post(API_URL, json=test["json"])
-    assert response.status_code == 500, f"Expected HTTP 400, got {response.status_code}"
-    response_json = response.json()
-    assert "error" in response_json["result"], "Expected 'error' key in response"
-    print(f"Error received: {response_json["result"]['error']}")
+    assert response.status_code == 500, f"Expected HTTP 500, got {response.status_code}"
+    assert compare(response.text, 'Failed to get grouping indices'), f"Expected 'Failed to get grouping indices', got {response.text}"
+
 
 
 unsupported_data_type_test = [
@@ -51,10 +50,10 @@ def test_unsupported_data_type_queries(test):
     """Testuje zapytanie z nieobsługiwanym typem danych"""
     print(f"Running test: {test['name']}")
     response = requests.post(API_URL, json=test["json"])
-    assert response.status_code == 200, f"Expected HTTP 400, got {response.status_code}"
-    response_json = response.json()
-    assert "error" in response_json["result"], "Expected 'error' key in response"
-    print(f"Error received: {response_json['result']['error']}")
+    assert response.status_code == 500, f"Expected HTTP 500, got {response.status_code}"
+    assert compare(response.text, 'Unsupported data type for aggregation. Only integer, float and double types are allowed'), \
+        f"Expected 'Unsupported data type for aggregation. Only integer, float and double types are allowed', got {response.text}"
+
 
 
 invalid_function_test = [
@@ -77,9 +76,9 @@ def test_invalid_function_queries(test):
     print(f"Running test: {test['name']}")
     response = requests.post(API_URL, json=test["json"])
     assert response.status_code == 400, f"Expected HTTP 400, got {response.status_code}"
-    response_json = response.json()
-    assert "error" in response_json['result'], "Expected 'error' key in response"
-    print(f"Error received: {response_json['result']['error']}")
+    assert compare(response.text, 'invalid aggregate function Maximalum, supported aggregate functions: Minimum, Maximum, Average, Sum, Count'), \
+        f"Expected ''invalid aggregate function Maximalum, supported aggregate functions: Minimum, Maximum, Average, Sum, Count'', got {response.text}"
+
 
 
 
@@ -97,9 +96,8 @@ def test_empty_query(test):
     print(f"Running test: {test['name']}")
     response = requests.post(API_URL, json=test["json"])
     assert response.status_code == 400, f"Expected HTTP 400, got {response.status_code}"
-    response_json = response.json()
-    assert "error" in response_json['result'], "Expected 'error' key in response"
-    print(f"Error received: {response_json['result']['error']}")
+    assert compare(response.text, 'validation error: table_name cannot be empty'), f"Expected 'validation error: table_name cannot be empty', got {response.text}"
+
 
 duplicated_columns_test = [
     {
@@ -132,9 +130,6 @@ def test_duplicated_column_query(test):
     print(f"Running test: {test['name']}")
     response = requests.post(API_URL, json=test["json"])
     assert response.status_code == 400, f"Expected HTTP 400, got {response.status_code}"
-    response_json = response.json()
-    assert "error" in response_json['result'], "Expected 'error' key in response"
-    print(f"Error received: {response_json['result']['error']}")
 
 
 non_existent_table_test = [
@@ -156,8 +151,9 @@ def test_non_existent_table_queries(test):
     """Testuje zapytanie z nieistniejącą tabelą"""
     print(f"Running test: {test['name']}")
     response = requests.post(API_URL, json=test["json"])
- 
-    assert response.status_code == 500, f"Expected HTTP 400, got {response.status_code}"
-    response_json = response.json()
-    assert "error" in response_json["result"], "Expected 'error' key in response"
-    print(f"Error received: {response_json["result"]['error']}")
+    assert response.status_code == 500, f"Expected HTTP 500, got {response.status_code}"
+    assert compare(response.text, 'Could not retreive data files'), f"Expected 'Could not retreive data files', got {response.text}"
+
+
+def compare(a, b):
+    return [c for c in a if c.isalpha()] == [c for c in b if c.isalpha()]
