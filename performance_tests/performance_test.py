@@ -2,6 +2,7 @@ import pytest
 import requests
 import math
 from test_queries import tests
+from test_queries_aws import tests_aws
 from tabulate import tabulate
 import sys
 import os
@@ -11,10 +12,11 @@ from config import API_URL
 
 NUMBER_OF_REPETITIONS = 10
 ENABLE_AVERAGE_TEST = False
+test_queries = tests_aws
 
 results = []
 
-@pytest.mark.parametrize("test", tests)
+@pytest.mark.parametrize("test", test_queries)
 def test_performance_one(test):
     """Testuje czas odpowiedzi dla różnych zapytań (pojedyncze wykonanie)."""
 
@@ -52,9 +54,9 @@ def test_performance_one(test):
 
 
             print("PASSED")
+           # print(response_json)
         except Exception as e:
             print(f"FAILED: {query['name']} - {e}")
-            print(response_json)
             continue
 
     print("\n")
@@ -67,7 +69,7 @@ def calculate_standard_deviation(times, mean):
     variance = sum((time - mean) ** 2 for time in times) / len(times)
     return math.sqrt(variance)
 
-@pytest.mark.parametrize("test", tests)
+@pytest.mark.parametrize("test", test_queries)
 def test_performance_average(test):
     """Testuje czas odpowiedzi dla różnych zapytań (wielokrotne wykonanie)."""
     if not ENABLE_AVERAGE_TEST:
