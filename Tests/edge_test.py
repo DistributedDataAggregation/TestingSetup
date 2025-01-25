@@ -298,13 +298,6 @@ def test_empty_nulls_edge(test):
     response_json = response.json()   
     print(response_json)
     assert response.status_code == 200, f"Expected HTTP 200, got {response.status_code}"
-    # TODO dorob sprawdzanie wynikow 
-    # results_compare(
-    #     query_payload=test["json"],
-    #     response_json=response_json,
-    #     file_path = f"/home/data/{test['json']['table_name']}.parquet"
-    # )
-
 
 def compare(a, b):
     return [c for c in a if c.isalpha()] == [c for c in b if c.isalpha()]
