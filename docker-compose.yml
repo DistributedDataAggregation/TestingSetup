@@ -10,7 +10,6 @@ services:
       app_net:
         ipv4_address: 172.20.0.10
 
-
   executor1:
     image: executor-image
     networks:
