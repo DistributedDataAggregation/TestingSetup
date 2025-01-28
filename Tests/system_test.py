@@ -212,22 +212,22 @@ NULL_SELECT_EXPECTED_RESULT = {
                 "results": [
                     {
                         "is_null": True,
-                        "result_type": "UNKNOWN",
+                        "result_type": "INT",
                         "aggregation": "Average"
                     },
                     {
                         "is_null": True,
-                        "result_type": "UNKNOWN",
+                        "result_type": "INT",
                         "aggregation": "Maximum"
                     },
                     {
                         "is_null": True,
-                        "result_type": "UNKNOWN",
+                        "result_type": "INT",
                         "aggregation": "Sum"
                     },
                     {
                         "is_null": True,
-                        "result_type": "UNKNOWN",
+                        "result_type": "INT",
                         "aggregation": "Count"
                     }
                 ]
@@ -237,22 +237,22 @@ NULL_SELECT_EXPECTED_RESULT = {
                 "results": [
                     {
                         "is_null": True,
-                        "result_type": "UNKNOWN",
+                        "result_type": "INT",
                         "aggregation": "Average"
                     },
                     {
                         "is_null": True,
-                        "result_type": "UNKNOWN",
+                        "result_type": "INT",
                         "aggregation": "Maximum"
                     },
                     {
                         "is_null": True,
-                        "result_type": "UNKNOWN",
+                        "result_type": "INT",
                         "aggregation": "Sum"
                     },
                     {
                         "is_null": True,
-                        "result_type": "UNKNOWN",
+                        "result_type": "INT",
                         "aggregation": "Count"
                     }
                 ]
@@ -262,22 +262,22 @@ NULL_SELECT_EXPECTED_RESULT = {
                 "results": [
                     {
                         "is_null": True,
-                        "result_type": "UNKNOWN",
+                        "result_type": "INT",
                         "aggregation": "Average"
                     },
                     {
                         "is_null": True,
-                        "result_type": "UNKNOWN",
+                        "result_type": "INT",
                         "aggregation": "Maximum"
                     },
                     {
                         "is_null": True,
-                        "result_type": "UNKNOWN",
+                        "result_type": "INT",
                         "aggregation": "Sum"
                     },
                     {
                         "is_null": True,
-                        "result_type": "UNKNOWN",
+                        "result_type": "INT",
                         "aggregation": "Count"
                     }
                 ]
@@ -287,22 +287,22 @@ NULL_SELECT_EXPECTED_RESULT = {
                 "results": [
                     {
                         "is_null": True,
-                        "result_type": "UNKNOWN",
+                        "result_type": "INT",
                         "aggregation": "Average"
                     },
                     {
                         "is_null": True,
-                        "result_type": "UNKNOWN",
+                        "result_type": "INT",
                         "aggregation": "Maximum"
                     },
                     {
                         "is_null": True,
-                        "result_type": "UNKNOWN",
+                        "result_type": "INT",
                         "aggregation": "Sum"
                     },
                     {
                         "is_null": True,
-                        "result_type": "UNKNOWN",
+                        "result_type": "INT",
                         "aggregation": "Count"
                     }
                 ]
@@ -312,22 +312,22 @@ NULL_SELECT_EXPECTED_RESULT = {
                 "results": [
                     {
                         "is_null": True,
-                        "result_type": "UNKNOWN",
+                        "result_type": "INT",
                         "aggregation": "Average"
                     },
                     {
                         "is_null": True,
-                        "result_type": "UNKNOWN",
+                        "result_type": "INT",
                         "aggregation": "Maximum"
                     },
                     {
                         "is_null": True,
-                        "result_type": "UNKNOWN",
+                        "result_type": "INT",
                         "aggregation": "Sum"
                     },
                     {
                         "is_null": True,
-                        "result_type": "UNKNOWN",
+                        "result_type": "INT",
                         "aggregation": "Count"
                     }
                 ]
