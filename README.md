@@ -1,0 +1,1 @@
+Repozytorium zawiera konfiguracje i skrypty do testowania, w tym testy wydajnościowe, integracyjne oraz konfigurację Dockera. Dodatkowo zawiera testy przeprowadzane na platformie Github Actions.
